@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>NSD Admin</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+background:#f7f6f2;
+font-family:Arial,Helvetica,sans-serif;
+color:#171717;
+}
+
+.container{
+max-width:700px;
+margin:50px auto;
+padding:20px;
+}
+
+.card{
+background:white;
+border:1px solid #ddd9d0;
+border-radius:8px;
+padding:30px;
+margin-bottom:20px;
+}
+
+h1,h2{
+font-family:Georgia,"Times New Roman",serif;
+}
+
+h1{
+color:#234f70;
+}
+
+label{
+display:block;
+font-weight:bold;
+margin-top:18px;
+margin-bottom:6px;
+}
+
+input,textarea,select{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:5px;
+font:inherit;
+}
+
+textarea{
+min-height:180px;
+}
+
+button{
+margin-top:18px;
+padding:12px 20px;
+border:0;
+border-radius:5px;
+background:#234f70;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#183a53;
+}
+
+.logout{
+background:#555;
+margin-left:8px;
+}
+
+#admin-panel{
+display:none;
+}
+
+#message{
+margin-top:15px;
+font-weight:bold;
+}
+
+.back{
+display:inline-block;
+margin-bottom:20px;
+color:#234f70;
+font-weight:bold;
+}
+
+small{
+color:#666;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="index.html" class="back">
+← Back to NSD Knowledge Hub
+</a>
+
+
+<!-- LOGIN -->
+
+<div class="card" id="login-box">
+
+<h1>NSD Admin Login</h1>
+
+<p>
+Sirf website administrator ke liye.
+</p>
+
+<label>Email</label>
+
+<input
+type="email"
+id="email"
+placeholder="Admin email">
+
+
+<label>Password</label>
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+
+<button onclick="login()">
+Log In
+</button>
+
+<p id="login-message"></p>
+
+</div>
+
+
+<!-- ADMIN PANEL -->
+
+<div class="card" id="admin-panel">
+
+<h1>NSD Publishing Panel</h1>
+
+<p>
+Yahan se aap website par post publish kar sakte hain.
+</p>
+
+
+<label>Category</label>
+
+<select id="category">
+
+<option value="News">News</option>
+
+<option value="National">
+National
+</option>
+
+<option value="International">
+International
+</option>
+
+<option value="Article">
+Article
+</option>
+
+<option value="Thought">
+Thoughts of the Day
+</option>
+
+<option value="Photo">
+Photos
+</option>
+
+</select>
+
+
+<label>Title</label>
+
+<input
+type="text"
+id="title"
+placeholder="Post ka title">
+
+
+<label>Content</label>
+
+<textarea
+id="content"
+placeholder="Apni post yahan likhein..."></textarea>
+
+
+<label>Photo URL <small>(optional)</small></label>
+
+<input
+type="url"
+id="image"
+placeholder="https://example.com/photo.jpg">
+
+
+<button onclick="publishPost()">
+Publish Post
+</button>
+
+<button
+class="logout"
+onclick="logout()">
+Logout
+</button>
+
+<p id="post-message"></p>
+
+</div>
+
+</div>
+
+
+<script src="admin.js"></script>
+
+</body>
+
+</html>
