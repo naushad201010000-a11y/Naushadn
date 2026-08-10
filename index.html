@@ -1,4 +1,4 @@
-.<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,16 +7,20 @@
 <title>NSD Knowledge Hub | Naushad Siddiqui</title>
 
 <meta name="description"
-content="NSD Knowledge Hub — News, Articles, Thoughts and Kota Perspective by Naushad Siddiqui.">
+content="NSD Knowledge Hub — News, Articles, Thoughts, Photos and perspectives by Naushad Siddiqui.">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 :root{
     --paper:#f7f6f2;
-    --white:#fff;
+    --white:#ffffff;
     --ink:#171717;
     --muted:#666;
     --line:#ddd9d0;
     --accent:#234f70;
+    --accent-dark:#183a53;
     --soft:#edf2f5;
     --serif:Georgia,"Times New Roman",serif;
     --sans:Arial,Helvetica,sans-serif;
@@ -28,7 +32,9 @@ content="NSD Knowledge Hub — News, Articles, Thoughts and Kota Perspective by 
     padding:0;
 }
 
-html{scroll-behavior:smooth}
+html{
+    scroll-behavior:smooth;
+}
 
 body{
     background:var(--paper);
@@ -38,14 +44,16 @@ body{
 }
 
 a{
-    text-decoration:none;
     color:inherit;
+    text-decoration:none;
 }
+
+/* HEADER */
 
 .site-header{
     position:sticky;
     top:0;
-    z-index:100;
+    z-index:1000;
     background:rgba(247,246,242,.97);
     border-bottom:1px solid var(--line);
 }
@@ -85,16 +93,47 @@ a{
     font-size:20px;
 }
 
-.menu{
-    display:flex;
-    gap:22px;
-    font-size:13px;
-    font-weight:bold;
+/* THREE DOT */
+
+.menu-button{
+    border:0;
+    background:transparent;
+    font-size:28px;
+    cursor:pointer;
+    padding:5px 10px;
+    color:var(--ink);
 }
 
-.menu a:hover{
+.dropdown{
+    display:none;
+    position:absolute;
+    right:20px;
+    top:62px;
+    width:230px;
+    background:white;
+    border:1px solid var(--line);
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+    border-radius:7px;
+    overflow:hidden;
+}
+
+.dropdown.show{
+    display:block;
+}
+
+.dropdown a{
+    display:block;
+    padding:13px 18px;
+    border-bottom:1px solid #eee;
+    font-size:14px;
+}
+
+.dropdown a:hover{
+    background:var(--soft);
     color:var(--accent);
 }
+
+/* HERO */
 
 .hero{
     max-width:1150px;
@@ -128,6 +167,8 @@ a{
     color:#555;
     font-size:17px;
 }
+
+/* CONTENT */
 
 .container{
     max-width:1150px;
@@ -167,7 +208,7 @@ a{
 .post{
     background:var(--white);
     border:1px solid var(--line);
-    border-radius:5px;
+    border-radius:6px;
     padding:24px;
     transition:.2s;
 }
@@ -175,6 +216,14 @@ a{
 .post:hover{
     transform:translateY(-3px);
     box-shadow:0 10px 25px rgba(0,0,0,.07);
+}
+
+.post img{
+    width:100%;
+    height:190px;
+    object-fit:cover;
+    border-radius:5px;
+    margin-bottom:16px;
 }
 
 .post-type{
@@ -195,19 +244,17 @@ a{
 .post p{
     margin-top:10px;
     color:var(--muted);
-    font-size:13px;
+    font-size:14px;
 }
 
-.read{
-    display:inline-block;
-    margin-top:18px;
-    color:var(--accent);
-    font-size:12px;
-    font-weight:bold;
+.date{
+    margin-top:14px;
+    font-size:11px;
+    color:#999;
 }
 
 .about{
-    background:var(--white);
+    background:white;
     border:1px solid var(--line);
     padding:32px;
 }
@@ -222,11 +269,13 @@ a{
     color:#555;
 }
 
+/* CONTACT */
+
 .contact{
     padding:35px;
     background:#171717;
-    color:#fff;
-    border-radius:5px;
+    color:white;
+    border-radius:6px;
 }
 
 .contact h3{
@@ -261,6 +310,8 @@ a{
     color:#171717;
 }
 
+/* FOOTER */
+
 footer{
     background:#111;
     color:#888;
@@ -270,32 +321,25 @@ footer{
 }
 
 footer strong{
-    color:#fff;
+    color:white;
     font-family:var(--serif);
     font-size:17px;
 }
 
+/* MOBILE */
+
 @media(max-width:800px){
 
-    .menu{
-        display:none;
+    .posts{
+        grid-template-columns:1fr 1fr;
     }
 
     .hero h2{
         font-size:42px;
     }
-
-    .posts{
-        grid-template-columns:1fr 1fr;
-    }
 }
 
 @media(max-width:550px){
-
-    .header{
-        height:64px;
-        padding:0 15px;
-    }
 
     .brand h1{
         font-size:17px;
@@ -330,33 +374,46 @@ footer strong{
         margin-top:4px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
 <header class="site-header">
+
 <div class="header">
 
-<a href="#home" class="brand">
+<a href="#" class="brand">
 <div class="logo">NSD</div>
 <h1>NSD Knowledge Hub</h1>
 </a>
 
-<nav class="menu">
-<a href="#home">Home</a>
-<a href="#news">News</a>
-<a href="#articles">Articles</a>
-<a href="#thoughts">Thoughts</a>
-<a href="#kota">Kota Perspective</a>
-<a href="#about">About Naushad</a>
-</nav>
+<button class="menu-button" onclick="toggleMenu()">⋮</button>
+
+<div class="dropdown" id="menu">
+
+<a href="#news">📰 News</a>
+<a href="#national">National</a>
+<a href="#international">International</a>
+<a href="#articles">✍️ Articles</a>
+<a href="#thoughts">💭 Thoughts of the Day</a>
+<a href="#photos">📷 Photos</a>
+<a href="#kota">🎓 Kota Perspective</a>
+<a href="#about">👤 About Naushad</a>
+<a href="#contact">📩 Contact</a>
+
+<hr>
+
+<a href="admin.html">🔐 Admin Login</a>
+
+</div>
 
 </div>
 </header>
 
 
-<section class="hero" id="home">
+<section class="hero">
 
 <div class="kicker">NSD KNOWLEDGE HUB</div>
 
@@ -379,6 +436,8 @@ on students, society, technology and life.
 <main class="container">
 
 
+<!-- NEWS -->
+
 <section class="section" id="news">
 
 <div class="section-title">
@@ -386,22 +445,40 @@ on students, society, technology and life.
 <span>Latest updates</span>
 </div>
 
-<div id="news-posts" class="posts">
-
-<div class="post">
-<div class="post-type">News</div>
-<h4>Welcome to NSD Knowledge Hub</h4>
-<p>
-The platform is being built as an independent
-space for useful information, articles and ideas.
-</p>
-<a class="read" href="#articles">Read more →</a>
-</div>
-
-</div>
+<div id="news-posts" class="posts"></div>
 
 </section>
 
+
+<!-- NATIONAL -->
+
+<section class="section" id="national">
+
+<div class="section-title">
+<h3>National</h3>
+<span>India</span>
+</div>
+
+<div id="national-posts" class="posts"></div>
+
+</section>
+
+
+<!-- INTERNATIONAL -->
+
+<section class="section" id="international">
+
+<div class="section-title">
+<h3>International</h3>
+<span>World</span>
+</div>
+
+<div id="international-posts" class="posts"></div>
+
+</section>
+
+
+<!-- ARTICLES -->
 
 <section class="section" id="articles">
 
@@ -410,41 +487,40 @@ space for useful information, articles and ideas.
 <span>Ideas & information</span>
 </div>
 
-<div id="article-posts" class="posts">
-
-<div class="post">
-<div class="post-type">Article</div>
-<h4>What NSD Knowledge Hub is about</h4>
-<p>
-Original articles and useful information will
-be published here over time.
-</p>
-</div>
-
-</div>
+<div id="article-posts" class="posts"></div>
 
 </section>
 
+
+<!-- THOUGHTS -->
 
 <section class="section" id="thoughts">
 
 <div class="section-title">
-<h3>Thoughts</h3>
+<h3>Thoughts of the Day</h3>
 <span>Short reflections</span>
 </div>
 
-<div class="about">
-
-<p>
-“Growth does not always happen loudly.
-Sometimes it begins with simply deciding
-to continue.”
-</p>
-
-</div>
+<div id="thought-posts" class="posts"></div>
 
 </section>
 
+
+<!-- PHOTOS -->
+
+<section class="section" id="photos">
+
+<div class="section-title">
+<h3>Photos</h3>
+<span>Visual stories</span>
+</div>
+
+<div id="photo-posts" class="posts"></div>
+
+</section>
+
+
+<!-- KOTA -->
 
 <section class="section" id="kota">
 
@@ -465,16 +541,17 @@ expectations, uncertainty and personal growth.
 </p>
 
 <p>
-NSD Knowledge Hub will use this section to
-share observations and articles about student
-life, preparation and the relationship between
-students and families.
+NSD Knowledge Hub will share observations
+and articles about student life, preparation
+and the relationship between students and families.
 </p>
 
 </div>
 
 </section>
 
+
+<!-- ABOUT -->
 
 <section class="section" id="about">
 
@@ -504,7 +581,9 @@ original and practical content.
 </section>
 
 
-<section class="section">
+<!-- CONTACT -->
+
+<section class="section" id="contact">
 
 <div class="contact">
 
@@ -546,5 +625,136 @@ Email
 
 </footer>
 
+
+<script>
+
+const SUPABASE_URL =
+'https://hdjdzyegdfvddpjtxwim.supabase.co';
+
+const SUPABASE_ANON_KEY =
+'sb_publishable_uZxNS9gMcM95eZtKiPTH7Q_YW70SZLe';
+
+const supabaseClient =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_ANON_KEY
+);
+
+
+function toggleMenu(){
+
+const menu =
+document.getElementById("menu");
+
+menu.classList.toggle("show");
+
+}
+
+
+async function loadPosts(){
+
+const { data, error } =
+await supabaseClient
+.from("articles")
+.select("*")
+.order("created_at", {ascending:false});
+
+if(error){
+
+console.log(error);
+
+return;
+
+}
+
+
+const sections = {
+
+"News":
+document.getElementById("news-posts"),
+
+"National":
+document.getElementById("national-posts"),
+
+"International":
+document.getElementById("international-posts"),
+
+"Article":
+document.getElementById("article-posts"),
+
+"Thought":
+document.getElementById("thought-posts"),
+
+"Photo":
+document.getElementById("photo-posts")
+
+};
+
+
+Object.values(sections).forEach(
+section => section.innerHTML=""
+);
+
+
+data.forEach(post => {
+
+const card =
+document.createElement("article");
+
+card.className="post";
+
+
+let imageHTML="";
+
+if(post.image_url){
+
+imageHTML=
+`<img src="${post.image_url}" alt="${post.title}">`;
+
+}
+
+
+const date =
+new Date(post.created_at)
+.toLocaleDateString("en-IN");
+
+
+card.innerHTML=`
+
+${imageHTML}
+
+<div class="post-type">
+${post.category || "Post"}
+</div>
+
+<h4>${post.title}</h4>
+
+<p>${post.content}</p>
+
+<div class="date">
+${date}
+</div>
+
+`;
+
+
+if(sections[post.category]){
+
+sections[post.category]
+.appendChild(card);
+
+}
+
+});
+
+}
+
+
+loadPosts();
+
+</script>
+
 </body>
 </html>
+
+
