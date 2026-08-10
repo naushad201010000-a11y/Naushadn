@@ -1,718 +1,1768 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Nsd</title>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NSD | Naushad Siddiqui</title>
+
+<meta name="description"
+content="NSD by Naushad Siddiqui — AI learning, creative work, resumes, data analytics and student guidance.">
 
 <style>
 
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+/* =========================
+   BASIC
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f6f8fc;
+    color:#172033;
+    line-height:1.6;
+}
+
+a{
+    text-decoration:none;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    background:rgba(255,255,255,.97);
+
+    border-bottom:1px solid #e5e7eb;
+
+    box-shadow:0 4px 18px rgba(0,0,0,.05);
+}
+
+.navbar{
+    max-width:1150px;
+    height:72px;
+
+    margin:auto;
+    padding:0 18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+
+/* =========================
+   BRAND
+========================= */
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:#111827;
+}
+
+.logo{
+    width:45px;
+    height:45px;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #172554
+    );
+
+    color:white;
+
+    font-size:14px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.brand-name{
+    font-size:19px;
+    font-weight:800;
+}
+
+.brand-tag{
+    font-size:10px;
+    color:#64748b;
+}
+
+
+/* =========================
+   NAV
+========================= */
+
+.nav-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.nav-links{
+    display:flex;
+    gap:18px;
+}
+
+.nav-links a{
+    color:#334155;
+    font-size:13px;
+    font-weight:600;
+}
+
+.nav-links a:hover{
+    color:#2563eb;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search{
+    display:flex;
+    align-items:center;
+    gap:5px;
+
+    background:#f1f5f9;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:9px;
+
+    padding:7px 9px;
+}
+
+.search input{
+    width:90px;
+
+    border:0;
+    outline:0;
+
+    background:transparent;
+
+    font-size:12px;
+}
+
+
+/* =========================
+   THREE DOT
+========================= */
+
+.menu{
+    position:relative;
+}
+
+.menu-btn{
+    width:40px;
+    height:40px;
+
+    border:0;
+    border-radius:9px;
+
+    background:#f1f5f9;
+
+    font-size:23px;
+
+    cursor:pointer;
+
+    color:#334155;
+}
+
+.menu-btn:hover{
+    background:#e2e8f0;
+}
+
+.menu-list{
+    display:none;
+
+    position:absolute;
+
+    right:0;
+    top:48px;
+
+    width:230px;
+
+    background:white;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:0 18px 35px rgba(0,0,0,.14);
+}
+
+.menu-list a{
+    display:block;
+
+    padding:12px 15px;
+
+    color:#334155;
+
+    font-size:14px;
+}
+
+.menu-list a:hover{
+    background:#eff6ff;
+
+    color:#2563eb;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    background:
+    radial-gradient(
+        circle at 80% 15%,
+        #3b82f640,
+        transparent 30%
+    ),
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #172554
+    );
+
+    color:white;
+
+    text-align:center;
+
+    padding:95px 20px;
+}
+
+.hero-small{
+    display:inline-block;
+
+    padding:7px 15px;
+
+    border-radius:30px;
+
+    background:#ffffff12;
+
+    border:1px solid #ffffff25;
+
+    color:#bfdbfe;
+
+    font-size:11px;
+
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:53px;
+
+    line-height:1.12;
+
+    max-width:850px;
+
+    margin:auto;
+}
+
+.hero h1 span{
+    color:#60a5fa;
+}
+
+.hero p{
+    max-width:700px;
+
+    margin:20px auto;
+
+    color:#dbeafe;
+
+    font-size:17px;
+}
+
+.buttons{
+    margin-top:28px;
+}
+
+.btn{
+    display:inline-block;
+
+    padding:13px 24px;
+
+    border-radius:9px;
+
+    margin:5px;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+.primary{
+    background:#3b82f6;
+
+    color:white;
+}
+
+.primary:hover{
+    background:#2563eb;
+}
+
+.secondary{
+    background:white;
+
+    color:#172554;
+}
+
+.secondary:hover{
+    background:#e2e8f0;
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    max-width:950px;
+
+    margin:-30px auto 0;
+
+    padding:0 18px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:14px;
+}
+
+.stat{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    padding:20px;
+
+    text-align:center;
+
+    box-shadow:0 8px 22px rgba(0,0,0,.06);
+}
+
+.stat strong{
+    display:block;
+
+    color:#2563eb;
+
+    font-size:17px;
+}
+
+.stat span{
+    color:#64748b;
+
+    font-size:12px;
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+section{
+    max-width:1080px;
+
+    margin:auto;
+
+    padding:80px 20px;
+}
+
+.heading{
+    text-align:center;
+
+    margin-bottom:40px;
+}
+
+.heading h2{
+    font-size:33px;
+
+    color:#0f172a;
+}
+
+.heading p{
+    color:#64748b;
+
+    margin-top:6px;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about{
+    max-width:850px;
+
+    margin:auto;
+
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:18px;
+
+    padding:38px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.about h3{
+    color:#1d4ed8;
+
+    font-size:25px;
+
+    margin-bottom:15px;
+}
+
+.about p{
+    color:#475569;
+
+    margin-bottom:15px;
+}
+
+.about strong{
+    color:#172554;
+}
+
+
+/* =========================
+   SERVICES
+========================= */
+
+.services{
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:22px;
+}
+
+.card{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:17px;
+
+    padding:30px;
+
+    transition:.25s;
+
+    box-shadow:0 7px 22px rgba(0,0,0,.04);
+}
+
+.card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:0 14px 30px rgba(0,0,0,.09);
+}
+
+.icon{
+    font-size:36px;
+
+    margin-bottom:10px;
+}
+
+.card h3{
+    color:#1d4ed8;
+
+    font-size:20px;
+
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#64748b;
+
+    font-size:14px;
+
+    margin-bottom:12px;
+}
+
+.card ul{
+    padding-left:18px;
+
+    color:#475569;
+
+    font-size:13px;
+}
+
+
+/* =========================
+   PORTFOLIO
+========================= */
+
+.portfolio{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+}
+
+.project{
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:15px;
+
+    padding:25px;
+}
+
+.project-icon{
+    font-size:30px;
+
+    margin-bottom:10px;
+}
+
+.project h3{
+    color:#172554;
+
+    font-size:18px;
+}
+
+.project p{
+    color:#64748b;
+
+    font-size:13px;
+
+    margin-top:6px;
+}
+
+
+/* =========================
+   CERTIFICATES
+========================= */
+
+.certificate-box{
+    max-width:800px;
+
+    margin:auto;
+
+    background:white;
+
+    border:1px dashed #93c5fd;
+
+    border-radius:17px;
+
+    padding:38px;
+
+    text-align:center;
+}
+
+.certificate-box .certificate-icon{
+    font-size:45px;
+
+    margin-bottom:10px;
+}
+
+.certificate-box h3{
+    color:#1e3a8a;
+
+    margin-bottom:8px;
+}
+
+.certificate-box p{
+    color:#64748b;
+
+    font-size:14px;
+}
+
+.certificate-note{
+    margin-top:15px;
+
+    display:inline-block;
+
+    background:#eff6ff;
+
+    color:#1d4ed8;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    font-size:12px;
+}
+
+
+/* =========================
+   STUDENT PATHWAY
+========================= */
+
+.pathway{
+    background:linear-gradient(
+        135deg,
+        #eff6ff,
+        #f8fafc
+    );
+
+    border:1px solid #bfdbfe;
+
+    border-radius:20px;
+
+    padding:42px 28px;
+
+    text-align:center;
+}
+
+.pathway h3{
+    color:#1e3a8a;
+
+    font-size:27px;
+
+    margin-bottom:12px;
+}
+
+.pathway p{
+    max-width:800px;
+
+    margin:auto;
+
+    color:#475569;
+}
+
+.guidance{
+    margin-top:28px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:14px;
+}
+
+.guidance div{
+    background:white;
+
+    border:1px solid #dbeafe;
+
+    border-radius:11px;
+
+    padding:16px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    color:#334155;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+    background:#0f172a;
+
+    color:white;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    padding:55px 20px;
+}
+
+.contact h2{
+    font-size:31px;
+}
+
+.contact p{
+    color:#cbd5e1;
+
+    margin:8px auto 20px;
+
+    max-width:600px;
+}
+
+.contact-btn{
+    display:inline-block;
+
+    padding:13px 23px;
+
+    border-radius:9px;
+
+    margin:5px;
+
+    font-weight:bold;
+}
+
+.whatsapp{
+    background:#16a34a;
+
+    color:white;
+}
+
+.email{
+    background:white;
+
+    color:#0f172a;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#020617;
+
+    color:#94a3b8;
+
+    text-align:center;
+
+    padding:35px 20px;
+}
+
+footer strong{
+    color:white;
+}
+
+.footer-links{
+    margin:12px 0;
+}
+
+.footer-links a{
+    color:#94a3b8;
+
+    margin:0 8px;
+
+    font-size:12px;
+}
+
+
+/* =========================
+   SEARCH RESULT
+========================= */
+
+#searchResult{
+    display:none;
+
+    max-width:1080px;
+
+    margin:15px auto;
+
+    padding:12px 18px;
+
+    background:#dbeafe;
+
+    color:#1e3a8a;
+
+    border-radius:9px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+    .nav-links,
+    .search{
+        display:none;
     }
 
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f7fb;
-        color: #222;
-        line-height: 1.6;
+    .hero{
+        padding:75px 18px;
     }
 
-    /* Navigation */
-
-    nav {
-        background-color: white;
-        padding: 15px;
-        text-align: center;
-        box-shadow: 0 2px 8px gray;
-        position: sticky;
-        top: 0;
-        z-index: 100;
+    .hero h1{
+        font-size:39px;
     }
 
-    .logo {
-        font-size: 22px;
-        font-weight: bold;
-        color: #1746d1;
-        margin-bottom: 10px;
+    .hero p{
+        font-size:15px;
     }
 
-    nav a {
-        text-decoration: none;
-        color: #1746d1;
-        font-weight: bold;
-        margin: 0 10px;
+    .stats{
+        grid-template-columns:
+        repeat(2,1fr);
+
+        margin-top:20px;
     }
 
-    nav a:hover {
-        color: #0b2d91;
+    .services{
+        grid-template-columns:1fr;
     }
 
-    /* Hero */
-
-    .hero {
-        padding: 80px 20px;
-        text-align: center;
-        background-color: #e8f0ff;
+    .portfolio{
+        grid-template-columns:1fr;
     }
 
-    .hero h1 {
-        font-size: 44px;
-        color: #1746d1;
-        margin-bottom: 10px;
+    .guidance{
+        grid-template-columns:1fr;
     }
 
-    .hero p {
-        font-size: 19px;
-        margin: 10px auto;
-        max-width: 650px;
+    .heading h2{
+        font-size:29px;
     }
 
-    .hero-button {
-        display: inline-block;
-        background-color: #1746d1;
-        color: white;
-        padding: 13px 25px;
-        margin-top: 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
+    .about{
+        padding:28px 22px;
+    }
+}
+
+@media(max-width:430px){
+
+    .brand-name{
+        font-size:17px;
     }
 
-    /* Sections */
-
-    section {
-        padding: 50px 20px;
-        max-width: 1000px;
-        margin: auto;
+    .brand-tag{
+        font-size:9px;
     }
 
-    section h2 {
-        text-align: center;
-        color: #1746d1;
-        margin-bottom: 25px;
-        font-size: 30px;
+    .logo{
+        width:40px;
+        height:40px;
     }
 
-    .intro {
-        text-align: center;
-        max-width: 750px;
-        margin: auto;
+    .hero h1{
+        font-size:33px;
     }
 
-    /* Services */
-
-    .services {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
+    .btn{
+        width:90%;
     }
 
-    .service {
-        background-color: white;
-        padding: 25px;
-        border-radius: 12px;
-        width: 280px;
-        box-shadow: 0 4px 12px #ddd;
-        text-align: center;
+    .stats{
+        gap:9px;
     }
 
-    .service h3 {
-        color: #1746d1;
-        margin-bottom: 10px;
+    .stat{
+        padding:16px 8px;
     }
-
-    /* Experience */
-
-    .experience {
-        background-color: white;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px #ddd;
-        max-width: 750px;
-        margin: auto;
-    }
-
-    /* Contact */
-
-    .contact {
-        text-align: center;
-        background-color: white;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px #ddd;
-        max-width: 600px;
-        margin: auto;
-    }
-
-    .contact-button {
-        display: inline-block;
-        background-color: #25D366;
-        color: white;
-        padding: 13px 25px;
-        margin-top: 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    /* Footer */
-
-    footer {
-        margin-top: 30px;
-        padding: 25px;
-        text-align: center;
-        background-color: #222;
-        color: white;
-    }
-
-    /* Mobile */
-
-    @media (max-width: 600px) {
-
-        nav a {
-            display: inline-block;
-            margin: 5px;
-            font-size: 14px;
-        }
-
-        .hero {
-            padding: 60px 15px;
-        }
-
-        .hero h1 {
-            font-size: 34px;
-        }
-
-        .hero p {
-            font-size: 17px;
-        }
-
-        .service {
-            width: 100%;
-        }
-
-    }
+}
 
 </style>
-
-</head><body><!-- Navigation -->
-
-<nav>
-
-    <div class="logo">
-        Naushad AI Services
-    </div>
-
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
-
-</nav>
+</head>
 
 
-<!-- Home -->
+<body>
 
-<section class="hero" id="home">
 
-    <h1>Nsd</h1>
+<!-- =========================
+     HEADER
+========================= -->
 
-    <p>
-        AI, Digital & Student Support Services
-    </p>
+<header>
 
-    <p>
-        Practical support for students and individuals
-        using modern digital and AI tools.
-    </p>
+<div class="navbar">
 
-    <a href="#services" class="hero-button">
-        Explore Services
-    </a>
+
+<a href="#home" class="brand">
+
+<div class="logo">
+NSD
+</div>
+
+<div>
+
+<div class="brand-name">
+NSD
+</div>
+
+<div class="brand-tag">
+Naushad Siddiqui
+</div>
+
+</div>
+
+</a>
+
+
+<div class="nav-area">
+
+
+<div class="nav-links">
+
+<a href="#about">About</a>
+
+<a href="#services">Services</a>
+
+<a href="#portfolio">Portfolio</a>
+
+<a href="#contact">Contact</a>
+
+</div>
+
+
+<div class="search">
+
+<span>🔍</span>
+
+<input
+id="searchInput"
+placeholder="Search..."
+onkeyup="searchWebsite()">
+
+</div>
+
+
+<div class="menu">
+
+<button
+class="menu-btn"
+onclick="toggleMenu()">
+⋮
+</button>
+
+
+<div
+id="menuList"
+class="menu-list">
+
+<a href="#home">
+Home
+</a>
+
+<a href="#about">
+About Me
+</a>
+
+<a href="#services">
+NSD AI Learner
+</a>
+
+<a href="#services">
+Photo Editor
+</a>
+
+<a href="#services">
+Resume & Documents
+</a>
+
+<a href="#services">
+Data Analytics
+</a>
+
+<a href="#portfolio">
+Portfolio
+</a>
+
+<a href="#certificates">
+Certificates
+</a>
+
+<a href="#student">
+Student Pathway
+</a>
+
+<a href="#contact">
+Contact
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+
+<div id="searchResult"></div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section
+class="hero"
+id="home">
+
+<div class="hero-small">
+NSD • NAUSHAD SIDDIQUI
+</div>
+
+
+<h1>
+
+Learn.
+Create.
+Analyze.
+<span>Guide.</span>
+
+</h1>
+
+
+<p>
+
+A professional personal platform for
+AI learning, creative work, professional
+documents, data analytics and student guidance.
+
+</p>
+
+
+<div class="buttons">
+
+<a
+href="#services"
+class="btn primary">
+Explore NSD
+</a>
+
+
+<a
+href="#contact"
+class="btn secondary">
+Connect With Me
+</a>
+
+</div>
 
 </section>
 
 
-<!-- About -->
+<!-- =========================
+     STATS
+========================= -->
 
-<section>
+<div class="stats">
 
-    <h2>About</h2>
+<div class="stat">
 
-    <p class="intro">
-        Nsd is a learning-based digital service
-        initiative focused on helping students and individuals
-        use AI and digital tools in a practical way.
-    </p>
+<strong>AI</strong>
 
-</section>
+<span>
+Learning
+</span>
 
-
-<!-- Services -->
-
-<section id="services">
-
-    <h2>Our Services</h2>
-
-    <div class="services">
-
-        <div class="service">
-
-            <h3>🤖 AI Assistance</h3>
-
-            <p>
-                AI tools ka practical aur productive use
-                seekhne aur digital tasks me assistance.
-            </p>
-
-        </div>
+</div>
 
 
-        <div class="service">
+<div class="stat">
 
-            <h3>📚 NEET Study Support</h3>
+<strong>Creative</strong>
 
-            <p>
-                Study planning, resources organize karna
-                aur AI ki help se learning support.
-            </p>
+<span>
+Photo Editing
+</span>
 
-        </div>
-
-
-        <div class="service">
-
-            <h3>🎯 Drop-Year Guidance</h3>
-
-            <p>
-                Drop year ke dauran planning, routine
-                aur study strategy par practical guidance.
-            </p>
-
-        </div>
+</div>
 
 
-        <div class="service">
+<div class="stat">
 
-            <h3>🎨 Photo Editing</h3>
+<strong>Data</strong>
 
-            <p>
-                Basic photo editing, design aur
-                digital image work.
-            </p>
+<span>
+Analytics
+</span>
 
-        </div>
-
-
-        <div class="service">
-
-            <h3>💻 Website Services</h3>
-
-            <p>
-                Small projects aur individuals ke liye
-                basic websites banana.
-            </p>
-
-        </div>
+</div>
 
 
-        <div class="service">
+<div class="stat">
 
-            <h3>📄 Digital Services</h3>
+<strong>Student</strong>
 
-            <p>
-                Resume, documents, PDF aur basic
-                Excel-related digital work.
-            </p>
+<span>
+Guidance
+</span>
 
-        </div>
+</div>
 
-    </div>
-
-</section>
+</div>
 
 
-<!-- Experience -->
+<!-- =========================
+     ABOUT
+========================= -->
 
-<section id="experience">
+<section
+id="about">
 
-    <h2>Experience & Learning</h2>
+<div class="heading">
 
-    <div class="experience">
+<h2>
+About Me
+</h2>
 
-        <p>
-            Kota coaching environment se mili learning
-            aur student life ke practical experience ko
-            students ke saath share karne ka aim.
-        </p>
+<p>
+Naushad Siddiqui
+</p>
 
-        <br>
-
-        <p>
-            Saath hi AI, web development aur digital tools
-            ko continuously learn karke practical services
-            develop karna.
-        </p>
-
-    </div>
-
-</section>
+</div>
 
 
-<!-- Contact -->
+<div class="about">
 
-<section id="contact">
+<h3>
+I am Naushad Siddiqui
+</h3>
 
-    <h2>Contact Us</h2>
 
-    <div class="contact">
+<p>
 
-        <p>
-            Agar aap kisi service ke baare me baat karna
-            chahte hain, contact karein.
-        </p>
+I am interested in learning modern
+digital skills and turning that learning
+into practical work.
 
-        <p>
-            Email: naushad201010000@gmail.com
-        </p>
+</p>
 
-        <a
-            href="https://wa.me/919649585135"
-            target="_blank"
-            class="contact-button">
 
-            Chat on WhatsApp
+<p>
 
-        </a>
+My interests include
+<strong>
+AI, programming, photo editing,
+professional documents, data analytics
+and student guidance.
+</strong>
 
-    </div>
+</p>
+
+
+<p>
+
+I also have experience with the
+<strong>Kota coaching environment</strong>,
+which has helped me understand the
+academic pressure, preparation challenges
+and expectations that students and families
+can experience.
+
+</p>
+
+
+<p>
+
+NSD is my personal platform where I bring
+these interests together to
+<strong>
+learn, create, analyze and guide.
+</strong>
+
+</p>
+
+</div>
 
 </section>
 
 
-<!-- Footer -->
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section
+id="services">
+
+<div class="heading">
+
+<h2>
+What I Work On
+</h2>
+
+<p>
+The main areas of NSD
+</p>
+
+</div>
+
+
+<div class="services">
+
+
+<div class="card">
+
+<div class="icon">
+🤖
+</div>
+
+<h3>
+NSD AI Learner
+</h3>
+
+<p>
+My journey of learning AI and programming
+through practical projects.
+</p>
+
+<ul>
+
+<li>AI tools</li>
+
+<li>Python</li>
+
+<li>C programming</li>
+
+<li>AI-assisted work</li>
+
+<li>Practical projects</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+🖼️
+</div>
+
+<h3>
+Photo Editor
+</h3>
+
+<p>
+Creative image editing and visual content.
+</p>
+
+<ul>
+
+<li>Photo editing</li>
+
+<li>Image enhancement</li>
+
+<li>Creative designs</li>
+
+<li>Digital visuals</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+📄
+</div>
+
+<h3>
+Resume & Documents
+</h3>
+
+<p>
+Professional digital documents for students
+and job seekers.
+</p>
+
+<ul>
+
+<li>Resume creation</li>
+
+<li>MS Word</li>
+
+<li>Formatting</li>
+
+<li>Reports</li>
+
+<li>PDF documents</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+📊
+</div>
+
+<h3>
+Data Analytics
+</h3>
+
+<p>
+Learning how to organize and understand data.
+</p>
+
+<ul>
+
+<li>Excel</li>
+
+<li>Google Sheets</li>
+
+<li>Data organization</li>
+
+<li>Reports</li>
+
+<li>Python data analysis</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+🎓
+</div>
+
+<h3>
+Student Pathway
+</h3>
+
+<p>
+Student guidance and parent-student
+communication.
+</p>
+
+<ul>
+
+<li>Study planning</li>
+
+<li>Career discussions</li>
+
+<li>Drop-year discussions</li>
+
+<li>Parent support</li>
+
+<li>Communication</li>
+
+</ul>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PORTFOLIO
+========================= -->
+
+<section
+id="portfolio">
+
+<div class="heading">
+
+<h2>
+Portfolio
+</h2>
+
+<p>
+Projects and practical work
+</p>
+
+</div>
+
+
+<div class="portfolio">
+
+
+<div class="project">
+
+<div class="project-icon">
+🌐
+</div>
+
+<h3>
+NSD Website
+</h3>
+
+<p>
+A personal professional website built
+to present my learning journey and work.
+</p>
+
+</div>
+
+
+<div class="project">
+
+<div class="project-icon">
+🤖
+</div>
+
+<h3>
+AI Learning Projects
+</h3>
+
+<p>
+Practical experiments and projects while
+learning AI and programming.
+</p>
+
+</div>
+
+
+<div class="project">
+
+<div class="project-icon">
+📊
+</div>
+
+<h3>
+Data Projects
+</h3>
+
+<p>
+Future projects involving spreadsheets,
+data analysis and Python.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CERTIFICATES
+========================= -->
+
+<section
+id="certificates">
+
+<div class="heading">
+
+<h2>
+Certificates
+</h2>
+
+<p>
+My professional learning achievements
+</p>
+
+</div>
+
+
+<div class="certificate-box">
+
+<div class="certificate-icon">
+🏆
+</div>
+
+<h3>
+Certificates & Achievements
+</h3>
+
+<p>
+
+This section is ready for adding certificates,
+course completions and other professional
+achievements in the future.
+
+</p>
+
+
+<div class="certificate-note">
+Certificate section ready
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     STUDENT PATHWAY
+========================= -->
+
+<section
+id="student">
+
+<div class="heading">
+
+<h2>
+Student Pathway
+</h2>
+
+<p>
+Understanding students and parents
+</p>
+
+</div>
+
+
+<div class="pathway">
+
+<h3>
+Students and Parents Both Matter
+</h3>
+
+
+<p>
+
+Students may face academic pressure,
+uncertainty and difficult decisions about
+their future.
+
+Parents and guardians may face concerns
+about education, finances, expectations and
+career security.
+
+Sometimes these different perspectives
+create conflict.
+
+Student Pathway is intended to encourage
+calm, practical and respectful discussion.
+
+</p>
+
+
+<div class="guidance">
+
+<div>
+🎓 Student Guidance
+</div>
+
+<div>
+📚 Study Planning
+</div>
+
+<div>
+🧭 Drop-Year Discussion
+</div>
+
+<div>
+🎯 Career Discussion
+</div>
+
+<div>
+👨‍👩‍👦 Parent Support
+</div>
+
+<div>
+💬 Communication
+</div>
+
+</div>
+
+<br>
+
+
+<p>
+
+<strong>Note:</strong>
+This is general, experience-based guidance
+and does not guarantee admission, selection,
+rank or career outcomes.
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section
+id="contact">
+
+<div class="contact">
+
+<h2>
+Let's Connect
+</h2>
+
+
+<p>
+
+For digital projects, learning discussions
+or student-related conversations.
+
+</p>
+
+
+<a
+href="https://wa.me/919649585135"
+target="_blank"
+class="contact-btn whatsapp">
+
+💬 Text Me on WhatsApp
+
+</a>
+
+
+<a
+href="mailto:naushad201010000@gmail.com"
+class="contact-btn email">
+
+✉️ Email Me
+
+</a>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
-    <p>
-        © 2026 Nsd
-    </p>
+<p>
+<strong>NSD • Naushad Siddiqui</strong>
+</p>
 
-    <p>
-        AI • Digital • Student Support
-    </p>
+<p>
+Learn • Create • Analyze • Guide
+</p>
+
+
+<div class="footer-links">
+
+<a href="#home">Home</a>
+
+<a href="#about">About</a>
+
+<a href="#services">Services</a>
+
+<a href="#portfolio">Portfolio</a>
+
+<a href="#certificates">Certificates</a>
+
+<a href="#student">Student Pathway</a>
+
+<a href="#contact">Contact</a>
+
+</div>
+
+
+<p>
+© 2026 NSD. All rights reserved.
+</p>
 
 </footer>
 
-</body></html>
-<div class="profile-circle">
-    <img src="photo.jpg" alt="Naushad AI Services">
-</div>
-.profile-circle {
-    width: 130px;
-    height: 130px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 4px 12px #aaa;
-}
 
-.profile-circle img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.service {
-    background-color: white;
-    padding: 28px 22px;
-    border-radius: 15px;
-    width: 280px;
-    box-shadow: 0 5px 15px #ddd;
-    text-align: center;
-    transition: 0.3s;
-}
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
-.service:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px #bbb;
-}
-
-.service h3 {
-    color: #1746d1;
-    margin-bottom: 12px;
-    font-size: 21px;
-}
-
-.service p {
-    font-size: 16px;
-}
-<section>
-
-    <h2>Why Choose Us?</h2>
-
-    <div class="services">
-
-        <div class="service">
-            <h3>🤖 AI Powered</h3>
-            <p>
-                Modern AI tools ka practical use.
-            </p>
-        </div>
-
-        <div class="service">
-            <h3>🎯 Student Focused</h3>
-            <p>
-                Students ki practical needs ko dhyan me rakhkar support.
-            </p>
-        </div>
-
-        <div class="service">
-            <h3>💡 Simple Approach</h3>
-            <p>
-                Complex digital kaam ko simple steps me samajhna.
-            </p>
-        </div>
-
-        <div class="service">
-            <h3>📱 Digital First</h3>
-            <p>
-                Mobile-friendly digital solutions.
-            </p>
-        </div>
-
-    </div>
-
-</section><section>
-
-    <h2>Frequently Asked Questions</h2>
-
-    <div class="faq">
-
-        <details>
-            <summary>What services do you provide?</summary>
-            <p>
-                We provide AI assistance, student support,
-                basic photo editing, digital services and
-                website-related services.
-            </p>
-        </details>
-
-        <details>
-            <summary>Can you help with NEET preparation?</summary>
-            <p>
-                We can provide study planning, organization
-                and AI-based learning support. We do not
-                replace qualified teachers or medical professionals.
-            </p>
-        </details>
-
-        <details>
-            <summary>Do you provide drop-year guidance?</summary>
-            <p>
-                Yes. We can discuss study planning, routine
-                and practical strategies for a drop year.
-            </p>
-        </details>
-
-        <details>
-            <summary>How can I contact you?</summary>
-            <p>
-                You can contact us through WhatsApp or email.
-            </p>
-        </details>
-
-    </div>
-
-</section>
-.faq {
-    max-width: 750px;
-    margin: auto;
-}
-
-.faq details {
-    background-color: white;
-    margin-bottom: 12px;
-    padding: 18px;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px #ddd;
-}
-
-.faq summary {
-    cursor: pointer;
-    font-weight: bold;
-    color: #1746d1;
-}
-
-.faq p {
-    margin-top: 12px;
-}
-.faq {
-    max-width: 750px;
-    margin: auto;
-}
-
-.faq details {
-    background-color: white;
-    margin-bottom: 12px;
-    padding: 18px;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px #ddd;
-}
-
-.faq summary {
-    cursor: pointer;
-    font-weight: bold;
-    color: #1746d1;
-}
-
-.faq p {
-    margin-top: 12px;
-}
-<form id="contactForm">
-
-    <input type="text" id="name" placeholder="Your Name" required>
-
-    <input type="email" id="email" placeholder="Your Email" required>
-
-    <textarea id="requirement" placeholder="What do you need help with?" required></textarea>
-
-    <button type="submit">Send Inquiry</button>
-
-</form>
-
-<p id="formMessage"></p>
-#contactForm {
-    max-width: 500px;
-    margin: 25px auto;
-}
-
-#contactForm input,
-#contactForm textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-#contactForm textarea {
-    height: 120px;
-    resize: vertical;
-}
-
-#contactForm button {
-    background-color: #1746d1;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
 <script>
 
-document.getElementById("contactForm").addEventListener("submit", function(event) {
+/* THREE DOT MENU */
 
-    event.preventDefault();
+function toggleMenu(){
 
-    let name = document.getElementById("name").value;
+    const menu =
+    document.getElementById("menuList");
 
-    document.getElementById("formMessage").innerHTML =
-        "Thank you, " + name + "! Your inquiry has been received.";
+    if(menu.style.display === "block"){
 
-});
-</script>
-<script>
+        menu.style.display = "none";
 
-document.getElementById("contactForm").addEventListener("submit", function(event) {
+    }else{
 
-    event.preventDefault();
+        menu.style.display = "block";
 
-    let name = document.getElementById("name").value;
+    }
+}
 
-    document.getElementById("formMessage").innerHTML =
-        "Thank you, " + name + "! Your inquiry has been received.";
+
+/* SEARCH */
+
+function searchWebsite(){
+
+    const input =
+    document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
+
+    const result =
+    document.getElementById("searchResult");
+
+
+    if(input === ""){
+
+        result.style.display = "none";
+
+        return;
+    }
+
+
+    const pageText =
+    document.body.innerText.toLowerCase();
+
+
+    if(pageText.includes(input)){
+
+        result.innerText =
+        "✓ Information found on this website.";
+
+    }else{
+
+        result.innerText =
+        "No matching information found.";
+
+    }
+
+
+    result.style.display = "block";
+
+}
+
+
+/* CLOSE MENU */
+
+document.addEventListener(
+"click",
+function(event){
+
+    if(!event.target.closest(".menu")){
+
+        document.getElementById(
+        "menuList"
+        ).style.display = "none";
+
+    }
 
 });
 
 </script>
-<script>
 
-document.getElementById("contactForm").addEventListener("submit", function(event) {
 
-    event.preventDefault();
-
-    let name = document.getElementById("name").value;
-
-    document.getElementById("formMessage").innerHTML =
-        "Thank you, " + name + "! Your inquiry has been received.";
-
-});
-</script><button type="submit">Send Inquiry</button>
-<button type="submit">Send on WhatsApp</button>
-<script>
-
-document.getElementById("contactForm").addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let requirement = document.getElementById("requirement").value;
-
-    let message =
-        "Hello Naushad AI Services!%0A%0A" +
-        "Name: " + name + "%0A" +
-        "Email: " + email + "%0A" +
-        "Requirement: " + requirement;
-
-    let whatsappNumber = "919649585135";
-
-    let whatsappURL =
-        "https://wa.me/" + whatsappNumber + "?text=" + message;
-
-    window.open(whatsappURL, "_blank");
-
-});
-
-</script>
-<p>
-    Have a question or need help?
-    Contact Naushad AI Services.
-</p>
-
-<a
-    href="mailto:naushad201010000@gmail.com"
-    class="hero-button">
-
-    Email Us
-
-</a>
-<section>
-
-    <h2>Disclaimer</h2>
-
-    <div class="experience">
-
-        <p>
-            Nsd provides educational,
-            digital and general guidance support.
-        </p>
-
-        <p>
-            Our student support is for educational and
-            informational purposes only. It does not
-            replace qualified teachers, doctors,
-            professional counselors or official authorities.
-        </p>
-
-        <p>
-            We do not guarantee exam results, admission,
-            rank or career outcomes.
-        </p>
-
-    </div>
-
-</section>
+</body>
+</html>
