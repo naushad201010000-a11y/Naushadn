@@ -1,87 +1,63 @@
-<!DOCTYPE html>
+.<!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>NSD Knowledge Hub | Naushad Siddiqui</title>
 
 <meta name="description"
-content="NSD Knowledge Hub — News, Articles, Thoughts, Photos and Kota Perspective by Naushad Siddiqui.">
-
-<meta name="author" content="Naushad Siddiqui">
-
-<!-- Supabase Library -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+content="NSD Knowledge Hub — News, Articles, Thoughts and Kota Perspective by Naushad Siddiqui.">
 
 <style>
-
 :root{
-    --paper:#f8f7f3;
-    --white:#ffffff;
+    --paper:#f7f6f2;
+    --white:#fff;
     --ink:#171717;
-    --muted:#686868;
-    --line:#dedbd3;
+    --muted:#666;
+    --line:#ddd9d0;
     --accent:#234f70;
-    --accent-dark:#183a53;
-    --soft:#eef3f6;
-
+    --soft:#edf2f5;
     --serif:Georgia,"Times New Roman",serif;
     --sans:Arial,Helvetica,sans-serif;
 }
 
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
     background:var(--paper);
     color:var(--ink);
     font-family:var(--sans);
-    line-height:1.65;
+    line-height:1.7;
 }
 
 a{
-    color:inherit;
     text-decoration:none;
+    color:inherit;
 }
-
-button,
-input,
-textarea{
-    font:inherit;
-}
-
-/* ================= HEADER ================= */
 
 .site-header{
     position:sticky;
     top:0;
-    z-index:1000;
-
-    background:rgba(248,247,243,.97);
-
+    z-index:100;
+    background:rgba(247,246,242,.97);
     border-bottom:1px solid var(--line);
 }
 
-.header-inner{
-    max-width:1180px;
-    height:74px;
+.header{
+    max-width:1150px;
+    height:72px;
     margin:auto;
-    padding:0 22px;
-
+    padding:0 20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-
-    gap:20px;
 }
 
 .brand{
@@ -91,718 +67,487 @@ textarea{
 }
 
 .logo{
-    width:43px;
-    height:43px;
-
+    width:42px;
+    height:42px;
     display:flex;
     align-items:center;
     justify-content:center;
-
-    background:var(--ink);
-    color:white;
-
+    background:#171717;
+    color:#fff;
     border-radius:5px;
-
     font-size:12px;
-    font-weight:900;
+    font-weight:bold;
     letter-spacing:1px;
 }
 
-.brand-title{
+.brand h1{
     font-family:var(--serif);
     font-size:20px;
+}
+
+.menu{
+    display:flex;
+    gap:22px;
+    font-size:13px;
     font-weight:bold;
 }
 
-/* ================= MAIN ================= */
+.menu a:hover{
+    color:var(--accent);
+}
+
+.hero{
+    max-width:1150px;
+    margin:auto;
+    padding:75px 20px 60px;
+    border-bottom:1px solid var(--line);
+}
+
+.kicker{
+    color:var(--accent);
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.hero h2{
+    max-width:800px;
+    margin-top:12px;
+    font-family:var(--serif);
+    font-size:55px;
+    line-height:1.08;
+}
+
+.hero h2 span{
+    color:var(--accent);
+}
+
+.hero p{
+    max-width:700px;
+    margin-top:20px;
+    color:#555;
+    font-size:17px;
+}
 
 .container{
-    max-width:750px;
-    margin:40px auto;
-    padding:0 20px;
+    max-width:1150px;
+    margin:auto;
+    padding:45px 20px;
 }
 
-.card{
-    background:var(--white);
-
-    border:1px solid var(--line);
-
-    border-radius:8px;
-
-    padding:28px;
-
-    margin-bottom:24px;
-
-    box-shadow:0 2px 8px rgba(0,0,0,.02);
+.section{
+    margin-bottom:65px;
 }
 
-.card h2,
-.card h3{
-    font-family:var(--serif);
-
-    color:var(--accent);
-
-    margin-bottom:15px;
-}
-
-label{
-    display:block;
-
-    font-size:14px;
-    font-weight:bold;
-
-    margin-bottom:5px;
-
-    color:var(--ink);
-}
-
-input,
-textarea{
-
-    width:100%;
-
-    padding:12px;
-
-    margin-bottom:15px;
-
-    border:1px solid var(--line);
-
-    border-radius:5px;
-
-    background:var(--paper);
-
-    outline:none;
-}
-
-input:focus,
-textarea:focus{
-
-    border-color:var(--accent);
-
-}
-
-button{
-
-    background:var(--accent);
-
-    color:white;
-
-    border:none;
-
-    padding:12px 20px;
-
-    border-radius:5px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-    transition:background .2s;
-
-    margin-right:8px;
-}
-
-button:hover{
-
-    background:var(--accent-dark);
-
-}
-
-button.signup-btn{
-
-    background:#2a7b4c;
-
-}
-
-.info-section{
-
-    border-top:1px solid var(--line);
-
-    padding-top:15px;
-
-    margin-top:15px;
-
-    font-size:14px;
-
-    color:var(--muted);
-
-}
-
-#status-msg,
-#post-msg{
-
-    font-weight:bold;
-
-    margin-top:10px;
-
-}
-
-#article-section{
-
-    display:none;
-
-}
-
-/* ================= CONTACT ================= */
-
-.contact-buttons{
-
+.section-title{
     display:flex;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
-    margin-top:15px;
-
+    justify-content:space-between;
+    align-items:end;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:12px;
+    margin-bottom:24px;
 }
 
-.contact-btn{
+.section-title h3{
+    font-family:var(--serif);
+    font-size:30px;
+}
 
-    display:inline-block;
+.section-title span{
+    color:var(--muted);
+    font-size:12px;
+}
 
-    padding:10px 15px;
+.posts{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
 
+.post{
+    background:var(--white);
+    border:1px solid var(--line);
     border-radius:5px;
+    padding:24px;
+    transition:.2s;
+}
 
-    font-size:13px;
+.post:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(0,0,0,.07);
+}
 
+.post-type{
+    color:var(--accent);
+    font-size:10px;
     font-weight:bold;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
 
+.post h4{
+    margin-top:8px;
+    font-family:var(--serif);
+    font-size:22px;
+    line-height:1.25;
+}
+
+.post p{
+    margin-top:10px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.read{
+    display:inline-block;
+    margin-top:18px;
+    color:var(--accent);
+    font-size:12px;
+    font-weight:bold;
+}
+
+.about{
+    background:var(--white);
+    border:1px solid var(--line);
+    padding:32px;
+}
+
+.about h4{
+    font-family:var(--serif);
+    font-size:27px;
+}
+
+.about p{
+    margin-top:12px;
+    color:#555;
+}
+
+.contact{
+    padding:35px;
+    background:#171717;
+    color:#fff;
+    border-radius:5px;
+}
+
+.contact h3{
+    font-family:var(--serif);
+    font-size:30px;
+}
+
+.contact p{
+    color:#bbb;
+    margin-top:8px;
+}
+
+.buttons{
+    margin-top:20px;
+}
+
+.btn{
+    display:inline-block;
+    padding:11px 17px;
+    margin-right:8px;
+    border-radius:4px;
+    font-size:12px;
+    font-weight:bold;
 }
 
 .whatsapp{
-
     background:#16854b;
-
-    color:white;
-
 }
 
 .email{
-
-    background:var(--accent);
-
-    color:white;
-
+    background:#fff;
+    color:#171717;
 }
 
-/* ================= MOBILE ================= */
+footer{
+    background:#111;
+    color:#888;
+    text-align:center;
+    padding:35px 20px;
+    font-size:12px;
+}
 
-@media(max-width:600px){
+footer strong{
+    color:#fff;
+    font-family:var(--serif);
+    font-size:17px;
+}
 
-    .header-inner{
+@media(max-width:800px){
 
-        height:66px;
-
-        padding:0 15px;
-
+    .menu{
+        display:none;
     }
 
-    .brand-title{
+    .hero h2{
+        font-size:42px;
+    }
 
+    .posts{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:550px){
+
+    .header{
+        height:64px;
+        padding:0 15px;
+    }
+
+    .brand h1{
         font-size:17px;
+    }
 
+    .hero{
+        padding:50px 18px 45px;
+    }
+
+    .hero h2{
+        font-size:37px;
+    }
+
+    .hero p{
+        font-size:15px;
     }
 
     .container{
-
-        margin:25px auto;
-
-        padding:0 15px;
-
+        padding:35px 15px;
     }
 
-    .card{
-
-        padding:22px;
-
+    .posts{
+        grid-template-columns:1fr;
     }
 
-    button{
-
-        margin-bottom:8px;
-
+    .section-title{
+        display:block;
     }
 
+    .section-title span{
+        display:block;
+        margin-top:4px;
+    }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- ================= HEADER ================= -->
-
 <header class="site-header">
+<div class="header">
 
-<div class="header-inner">
+<a href="#home" class="brand">
+<div class="logo">NSD</div>
+<h1>NSD Knowledge Hub</h1>
+</a>
 
-<div class="brand">
+<nav class="menu">
+<a href="#home">Home</a>
+<a href="#news">News</a>
+<a href="#articles">Articles</a>
+<a href="#thoughts">Thoughts</a>
+<a href="#kota">Kota Perspective</a>
+<a href="#about">About Naushad</a>
+</nav>
 
-<div class="logo">
-NSD
 </div>
-
-<div class="brand-title">
-NSD Knowledge Hub
-</div>
-
-</div>
-
-</div>
-
 </header>
 
 
-<div class="container">
+<section class="hero" id="home">
 
-
-<!-- ================= LOGIN ================= -->
-
-<div class="card" id="auth-card">
+<div class="kicker">NSD KNOWLEDGE HUB</div>
 
 <h2>
-Admin Login
+News, ideas and
+<span>perspectives</span>
+worth reading.
 </h2>
-
-<p style="color:var(--muted);font-size:13px;margin-bottom:20px;">
-Login karke NSD Knowledge Hub ke content ko manage karein.
-</p>
-
-
-<label>
-Email
-</label>
-
-<input
-type="email"
-id="user-email"
-placeholder="Apna email daliye"
->
-
-
-<label>
-Password
-</label>
-
-<input
-type="password"
-id="user-password"
-placeholder="Password daliye"
->
-
-
-<button onclick="handleLogin()">
-Log In
-</button>
-
-
-<p id="status-msg"></p>
-
-</div>
-
-
-<!-- ================= ARTICLE UPLOAD ================= -->
-
-<div
-class="card"
-id="article-section">
-
-<h2>
-Create Article
-</h2>
-
-
-<label>
-Title
-</label>
-
-<input
-type="text"
-id="article-title"
-placeholder="Article ka title"
->
-
-
-<label>
-Content
-</label>
-
-<textarea
-id="article-content"
-rows="10"
-placeholder="Apna article yahan likhein..."
-></textarea>
-
-
-<button onclick="uploadArticle()">
-Publish Article
-</button>
-
-
-<button
-onclick="handleLogout()"
-style="background:#555;">
-
-Logout
-
-</button>
-
-
-<p id="post-msg"></p>
-
-</div>
-
-
-<!-- ================= CONTACT ================= -->
-
-<div class="card">
-
-<h3>
-Contact
-</h3>
-
-<p style="color:var(--muted);font-size:14px;">
-For feedback, suggestions, collaboration
-or general enquiries.
-</p>
-
-
-<div class="contact-buttons">
-
-
-<a
-class="contact-btn whatsapp"
-href="https://wa.me/919649585135"
-target="_blank"
-rel="noopener">
-
-💬 WhatsApp
-
-</a>
-
-
-<a
-class="contact-btn email"
-href="mailto:naushad201010000@gmail.com">
-
-✉️ Email
-
-</a>
-
-
-</div>
-
-</div>
-
-
-<!-- ================= DISCLAIMER ================= -->
-
-<div class="card">
-
-<h3>
-Disclaimer
-</h3>
 
 <p>
-NSD Knowledge Hub provides general
-information and independently published
-content.
+A personal publishing platform by
+<strong>Naushad Siddiqui</strong> for news,
+articles, thoughts, photos and perspectives
+on students, society, technology and life.
 </p>
 
-<p style="margin-top:8px;">
-Information published as news or articles
-should be verified from reliable sources.
+</section>
+
+
+<main class="container">
+
+
+<section class="section" id="news">
+
+<div class="section-title">
+<h3>News</h3>
+<span>Latest updates</span>
+</div>
+
+<div id="news-posts" class="posts">
+
+<div class="post">
+<div class="post-type">News</div>
+<h4>Welcome to NSD Knowledge Hub</h4>
+<p>
+The platform is being built as an independent
+space for useful information, articles and ideas.
+</p>
+<a class="read" href="#articles">Read more →</a>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="articles">
+
+<div class="section-title">
+<h3>Articles</h3>
+<span>Ideas & information</span>
+</div>
+
+<div id="article-posts" class="posts">
+
+<div class="post">
+<div class="post-type">Article</div>
+<h4>What NSD Knowledge Hub is about</h4>
+<p>
+Original articles and useful information will
+be published here over time.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="thoughts">
+
+<div class="section-title">
+<h3>Thoughts</h3>
+<span>Short reflections</span>
+</div>
+
+<div class="about">
+
+<p>
+“Growth does not always happen loudly.
+Sometimes it begins with simply deciding
+to continue.”
 </p>
 
 </div>
 
+</section>
+
+
+<section class="section" id="kota">
+
+<div class="section-title">
+<h3>Kota Perspective</h3>
+<span>Student life & preparation</span>
+</div>
+
+<div class="about">
+
+<h4>A perspective on student life</h4>
+
+<p>
+Kota is more than coaching classes and
+competitive examinations. It is also a
+place where students experience pressure,
+expectations, uncertainty and personal growth.
+</p>
+
+<p>
+NSD Knowledge Hub will use this section to
+share observations and articles about student
+life, preparation and the relationship between
+students and families.
+</p>
 
 </div>
 
+</section>
 
-<!-- ================= SUPABASE ================= -->
 
-<script>
+<section class="section" id="about">
 
-/*
-=====================================================
-SUPABASE CONFIGURATION
-=====================================================
-*/
+<div class="section-title">
+<h3>About Naushad</h3>
+<span>The person behind NSD</span>
+</div>
 
+<div class="about">
 
-const SUPABASE_URL =
-'https://hdjdzyegdfvddpjtxwim.supabase.co';
+<h4>Naushad Siddiqui</h4>
 
+<p>
+NSD Knowledge Hub is my personal publishing
+platform where I share articles, news,
+thoughts and perspectives.
+</p>
 
-const SUPABASE_ANON_KEY =
-'sb_publishable_uZxNS9gMcM95eZtKiPTH7Q_YW70SZLe';
+<p>
+The aim is to build a useful independent
+knowledge platform through consistent,
+original and practical content.
+</p>
 
+</div>
 
-const supabaseClient =
-supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-);
+</section>
 
 
-/*
-=====================================================
-LOGIN
-=====================================================
-*/
+<section class="section">
 
+<div class="contact">
 
-async function handleLogin(){
+<h3>Connect with NSD</h3>
 
-    const email =
-        document
-        .getElementById('user-email')
-        .value
-        .trim();
+<p>
+For collaboration, suggestions or general enquiries.
+</p>
 
+<div class="buttons">
 
-    const password =
-        document
-        .getElementById('user-password')
-        .value;
+<a class="btn whatsapp"
+href="https://wa.me/919649585135"
+target="_blank">
+WhatsApp
+</a>
 
+<a class="btn email"
+href="mailto:naushad201010000@gmail.com">
+Email
+</a>
 
-    const msg =
-        document
-        .getElementById('status-msg');
+</div>
 
+</div>
 
-    if(!email || !password){
+</section>
 
-        msg.style.color="red";
+</main>
 
-        msg.innerText =
-        "Email aur password daliye.";
 
-        return;
+<footer>
 
-    }
+<strong>NSD Knowledge Hub</strong>
 
+<br><br>
 
-    msg.style.color="var(--ink)";
+© 2026 Naushad Siddiqui. All rights reserved.
 
-    msg.innerText="Logging in...";
+</footer>
 
-
-    const { data, error } =
-        await supabaseClient
-        .auth
-        .signInWithPassword({
-
-            email:email,
-
-            password:password
-
-        });
-
-
-    if(error){
-
-        msg.style.color="red";
-
-        msg.innerText =
-        "Login failed: " +
-        error.message;
-
-        return;
-
-    }
-
-
-    msg.style.color="green";
-
-    msg.innerText =
-    "Login successful.";
-
-
-    document
-    .getElementById('auth-card')
-    .style.display="none";
-
-
-    document
-    .getElementById('article-section')
-    .style.display="block";
-
-}
-
-
-/*
-=====================================================
-LOGOUT
-=====================================================
-*/
-
-
-async function handleLogout(){
-
-    await supabaseClient
-    .auth
-    .signOut();
-
-
-    document
-    .getElementById('article-section')
-    .style.display="none";
-
-
-    document
-    .getElementById('auth-card')
-    .style.display="block";
-
-
-    document
-    .getElementById('status-msg')
-    .innerText="Logged out.";
-
-}
-
-
-/*
-=====================================================
-UPLOAD ARTICLE
-=====================================================
-*/
-
-
-async function uploadArticle(){
-
-    const title =
-        document
-        .getElementById('article-title')
-        .value
-        .trim();
-
-
-    const content =
-        document
-        .getElementById('article-content')
-        .value
-        .trim();
-
-
-    const postMsg =
-        document
-        .getElementById('post-msg');
-
-
-    if(!title || !content){
-
-        postMsg.style.color="red";
-
-        postMsg.innerText =
-        "Title aur content dono bharein.";
-
-        return;
-
-    }
-
-
-    postMsg.style.color="var(--ink)";
-
-    postMsg.innerText =
-    "Publishing...";
-
-
-    /*
-    IMPORTANT:
-
-    Ye code 'articles' table use kar raha hai.
-
-    Pehle Supabase me 'articles' table
-    create karna hoga.
-
-    */
-
-    const { data, error } =
-
-        await supabaseClient
-        .from('articles')
-        .insert([{
-
-            title:title,
-
-            content:content
-
-        }]);
-
-
-    if(error){
-
-        postMsg.style.color="red";
-
-        postMsg.innerText =
-        "Publish failed: " +
-        error.message;
-
-        return;
-
-    }
-
-
-    postMsg.style.color="green";
-
-    postMsg.innerText =
-    "Article successfully published.";
-
-
-    document
-    .getElementById('article-title')
-    .value="";
-
-
-    document
-    .getElementById('article-content')
-    .value="";
-
-}
-
-
-/*
-=====================================================
-CHECK EXISTING LOGIN SESSION
-=====================================================
-*/
-
-
-async function checkSession(){
-
-    const { data } =
-        await supabaseClient
-        .auth
-        .getSession();
-
-
-    if(data.session){
-
-        document
-        .getElementById('auth-card')
-        .style.display="none";
-
-
-        document
-        .getElementById('article-section')
-        .style.display="block";
-
-    }
-
-}
-
-
-checkSession();
-
-</script>
+</body>
+</html>
 
 
 </body>
