@@ -2,19 +2,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NSD | Naushad Siddiqui</title>
+<title>NSD Knowledge Hub | Naushad Siddiqui</title>
 
 <meta name="description"
-content="NSD by Naushad Siddiqui — AI learning, creative work, resumes, data analytics and student guidance.">
+content="NSD Knowledge Hub — News, Articles, Thoughts, Photos and Kota Perspective by Naushad Siddiqui.">
+
+<meta name="author" content="Naushad Siddiqui">
 
 <style>
 
-/* =========================
-   BASIC
-========================= */
+:root{
+    --paper:#f8f7f3;
+    --white:#ffffff;
+    --ink:#171717;
+    --muted:#686868;
+    --line:#dedbd3;
+    --accent:#234f70;
+    --accent-dark:#183a53;
+    --soft:#eef3f6;
+
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:Arial,Helvetica,sans-serif;
+}
 
 *{
     margin:0;
@@ -27,153 +40,123 @@ html{
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f6f8fc;
-    color:#172033;
-    line-height:1.6;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.65;
 }
 
 a{
+    color:inherit;
     text-decoration:none;
 }
 
+button,
+input{
+    font:inherit;
+}
 
-/* =========================
-   HEADER
-========================= */
+/* ================= HEADER ================= */
 
-header{
+.site-header{
     position:sticky;
     top:0;
     z-index:1000;
 
-    background:rgba(255,255,255,.97);
+    background:rgba(248,247,243,.97);
 
-    border-bottom:1px solid #e5e7eb;
-
-    box-shadow:0 4px 18px rgba(0,0,0,.05);
+    border-bottom:1px solid var(--line);
 }
 
-.navbar{
-    max-width:1150px;
-    height:72px;
-
+.header-inner{
+    max-width:1180px;
+    height:74px;
     margin:auto;
-    padding:0 18px;
+    padding:0 22px;
 
     display:flex;
     align-items:center;
     justify-content:space-between;
+    gap:20px;
 }
-
-
-/* =========================
-   BRAND
-========================= */
 
 .brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    color:#111827;
-}
-
-.logo{
-    width:45px;
-    height:45px;
-
-    border-radius:12px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:linear-gradient(
-        135deg,
-        #2563eb,
-        #172554
-    );
-
-    color:white;
-
-    font-size:14px;
-    font-weight:bold;
-    letter-spacing:1px;
-}
-
-.brand-name{
-    font-size:19px;
-    font-weight:800;
-}
-
-.brand-tag{
-    font-size:10px;
-    color:#64748b;
-}
-
-
-/* =========================
-   NAV
-========================= */
-
-.nav-area{
     display:flex;
     align-items:center;
     gap:12px;
 }
 
-.nav-links{
-    display:flex;
-    gap:18px;
-}
+.logo{
+    width:43px;
+    height:43px;
 
-.nav-links a{
-    color:#334155;
-    font-size:13px;
-    font-weight:600;
-}
-
-.nav-links a:hover{
-    color:#2563eb;
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-.search{
     display:flex;
     align-items:center;
-    gap:5px;
+    justify-content:center;
 
-    background:#f1f5f9;
+    background:var(--ink);
+    color:white;
 
-    border:1px solid #e2e8f0;
+    border-radius:5px;
 
-    border-radius:9px;
-
-    padding:7px 9px;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:1px;
 }
 
-.search input{
-    width:90px;
+.brand-title{
+    font-family:var(--serif);
+    font-size:21px;
+    font-weight:bold;
+}
 
-    border:0;
-    outline:0;
+.brand-subtitle{
+    color:var(--muted);
+    font-size:10px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
 
-    background:transparent;
+.nav{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
 
+.nav a{
+    color:#3d3d3d;
+    font-size:13px;
+    font-weight:700;
+}
+
+.nav a:hover{
+    color:var(--accent);
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.search{
+    width:145px;
+    padding:9px 11px;
+
+    background:white;
+
+    border:1px solid var(--line);
+    border-radius:5px;
+
+    outline:none;
     font-size:12px;
 }
 
+.search:focus{
+    border-color:var(--accent);
+}
 
-/* =========================
-   THREE DOT
-========================= */
-
-.menu{
+.menu-wrap{
     position:relative;
 }
 
@@ -181,696 +164,672 @@ header{
     width:40px;
     height:40px;
 
-    border:0;
-    border-radius:9px;
+    border:1px solid var(--line);
+    border-radius:5px;
 
-    background:#f1f5f9;
-
-    font-size:23px;
+    background:white;
+    color:var(--ink);
 
     cursor:pointer;
-
-    color:#334155;
+    font-size:22px;
 }
 
 .menu-btn:hover{
-    background:#e2e8f0;
+    border-color:var(--accent);
+    color:var(--accent);
 }
 
-.menu-list{
+.menu{
     display:none;
 
     position:absolute;
-
     right:0;
     top:48px;
 
-    width:230px;
+    width:225px;
 
     background:white;
 
-    border:1px solid #e2e8f0;
+    border:1px solid var(--line);
+    border-radius:6px;
 
-    border-radius:12px;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
 
     overflow:hidden;
-
-    box-shadow:0 18px 35px rgba(0,0,0,.14);
 }
 
-.menu-list a{
+.menu.show{
     display:block;
+}
 
+.menu a{
+    display:block;
     padding:12px 15px;
 
-    color:#334155;
+    border-bottom:1px solid #eeeeea;
 
-    font-size:14px;
+    font-size:13px;
 }
 
-.menu-list a:hover{
-    background:#eff6ff;
-
-    color:#2563eb;
+.menu a:hover{
+    background:var(--soft);
+    color:var(--accent);
 }
 
-
-/* =========================
-   HERO
-========================= */
+/* ================= HERO ================= */
 
 .hero{
-    background:
-    radial-gradient(
-        circle at 80% 15%,
-        #3b82f640,
-        transparent 30%
-    ),
-    linear-gradient(
-        135deg,
-        #0f172a,
-        #172554
-    );
+    max-width:1180px;
+    margin:auto;
+    padding:70px 22px 55px;
 
-    color:white;
-
-    text-align:center;
-
-    padding:95px 20px;
+    border-bottom:1px solid var(--line);
 }
 
-.hero-small{
-    display:inline-block;
-
-    padding:7px 15px;
-
-    border-radius:30px;
-
-    background:#ffffff12;
-
-    border:1px solid #ffffff25;
-
-    color:#bfdbfe;
-
+.kicker{
+    color:var(--accent);
     font-size:11px;
-
-    margin-bottom:20px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
 }
 
 .hero h1{
-    font-size:53px;
-
-    line-height:1.12;
-
     max-width:850px;
 
-    margin:auto;
+    margin-top:13px;
+
+    font-family:var(--serif);
+    font-size:58px;
+    line-height:1.06;
+    letter-spacing:-1.5px;
 }
 
 .hero h1 span{
-    color:#60a5fa;
+    color:var(--accent);
 }
 
-.hero p{
-    max-width:700px;
+.hero-text{
+    max-width:720px;
 
-    margin:20px auto;
+    margin-top:20px;
 
-    color:#dbeafe;
-
+    color:#555;
     font-size:17px;
 }
 
-.buttons{
-    margin-top:28px;
+.hero-line{
+    width:70px;
+    height:3px;
+
+    margin-top:25px;
+
+    background:var(--accent);
 }
 
-.btn{
-    display:inline-block;
+/* ================= MAIN ================= */
 
-    padding:13px 24px;
+.container{
+    max-width:1180px;
+    margin:auto;
+    padding:48px 22px;
+}
 
-    border-radius:9px;
+.section{
+    margin-bottom:70px;
+}
 
-    margin:5px;
+.section-head{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
 
-    font-weight:bold;
+    gap:20px;
+
+    padding-bottom:14px;
+    margin-bottom:24px;
+
+    border-bottom:2px solid var(--ink);
+}
+
+.section-head h2{
+    font-family:var(--serif);
+    font-size:30px;
+}
+
+.section-head p{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* ================= CATEGORY ================= */
+
+.categories{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+
+    margin-bottom:25px;
+}
+
+.category{
+    border:1px solid var(--line);
+    background:white;
+
+    padding:7px 12px;
+
+    border-radius:20px;
+
+    color:#555;
+    font-size:12px;
+
+    cursor:pointer;
+}
+
+.category:hover,
+.category.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:white;
+}
+
+/* ================= FEATURED ================= */
+
+.featured{
+    display:grid;
+    grid-template-columns:1.35fr .65fr;
+    gap:25px;
+}
+
+.featured-main{
+    min-height:340px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:end;
+
+    padding:35px;
+
+    background:var(--ink);
+    color:white;
+
+    border-radius:4px;
+}
+
+.featured-main .post-type{
+    color:#a9c9dd;
+}
+
+.featured-main h3{
+    max-width:700px;
+
+    margin-top:9px;
+
+    font-family:var(--serif);
+    font-size:36px;
+    line-height:1.15;
+}
+
+.featured-main p{
+    max-width:650px;
+
+    margin-top:12px;
+
+    color:#c9c9c9;
+    font-size:14px;
+}
+
+.featured-side{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.mini-card{
+    flex:1;
+
+    padding:22px;
+
+    background:white;
+
+    border:1px solid var(--line);
+    border-radius:4px;
+
+    cursor:pointer;
+}
+
+.mini-card:hover{
+    border-color:var(--accent);
+}
+
+.mini-card h3{
+    margin-top:6px;
+
+    font-family:var(--serif);
+    font-size:20px;
+}
+
+.mini-card p{
+    margin-top:7px;
+
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* ================= POSTS ================= */
+
+.posts{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.post{
+    background:white;
+
+    border:1px solid var(--line);
+    border-radius:4px;
+
+    overflow:hidden;
 
     transition:.2s;
 }
 
-.primary{
-    background:#3b82f6;
+.post:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(0,0,0,.07);
+}
 
+.post-image{
+    width:100%;
+    height:190px;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.post-top{
+    padding:23px 23px 0;
+}
+
+.post-type{
+    margin-top:2px;
+
+    color:var(--accent);
+
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+}
+
+.post h3{
+    margin-top:7px;
+
+    font-family:var(--serif);
+    font-size:21px;
+    line-height:1.25;
+}
+
+.post-excerpt{
+    margin-top:9px;
+
+    color:var(--muted);
+    font-size:13px;
+}
+
+.post-bottom{
+    padding:18px 23px 22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    border-top:1px solid #eee;
+    margin-top:20px;
+}
+
+.date{
+    color:#999;
+    font-size:10px;
+}
+
+.post-buttons{
+    display:flex;
+    gap:7px;
+}
+
+.read,
+.share-btn{
+    border:0;
+    border-radius:4px;
+
+    padding:8px 11px;
+
+    font-size:11px;
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+.read{
+    background:var(--accent);
     color:white;
 }
 
-.primary:hover{
-    background:#2563eb;
+.share-btn{
+    background:#edf0f1;
+    color:#333;
 }
 
-.secondary{
+.read:hover{
+    background:var(--accent-dark);
+}
+
+/* ================= KOTA ================= */
+
+.kota{
     background:white;
 
-    color:#172554;
+    border:1px solid var(--line);
+    border-radius:4px;
+
+    padding:30px;
 }
 
-.secondary:hover{
-    background:#e2e8f0;
+.kota h3{
+    font-family:var(--serif);
+    font-size:27px;
 }
 
+.kota p{
+    max-width:780px;
 
-/* =========================
-   STATS
-========================= */
+    margin-top:12px;
 
-.stats{
-    max-width:950px;
-
-    margin:-30px auto 0;
-
-    padding:0 18px;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
-    gap:14px;
+    color:#555;
+    font-size:14px;
 }
 
-.stat{
+/* ================= ABOUT ================= */
+
+.about-card{
     background:white;
 
-    border:1px solid #e5e7eb;
-
-    border-radius:14px;
-
-    padding:20px;
-
-    text-align:center;
-
-    box-shadow:0 8px 22px rgba(0,0,0,.06);
-}
-
-.stat strong{
-    display:block;
-
-    color:#2563eb;
-
-    font-size:17px;
-}
-
-.stat span{
-    color:#64748b;
-
-    font-size:12px;
-}
-
-
-/* =========================
-   SECTION
-========================= */
-
-section{
-    max-width:1080px;
-
-    margin:auto;
-
-    padding:80px 20px;
-}
-
-.heading{
-    text-align:center;
-
-    margin-bottom:40px;
-}
-
-.heading h2{
-    font-size:33px;
-
-    color:#0f172a;
-}
-
-.heading p{
-    color:#64748b;
-
-    margin-top:6px;
-}
-
-
-/* =========================
-   ABOUT
-========================= */
-
-.about{
-    max-width:850px;
-
-    margin:auto;
-
-    background:white;
-
-    border:1px solid #e5e7eb;
-
-    border-radius:18px;
-
-    padding:38px;
-
-    box-shadow:0 8px 25px rgba(0,0,0,.05);
-}
-
-.about h3{
-    color:#1d4ed8;
-
-    font-size:25px;
-
-    margin-bottom:15px;
-}
-
-.about p{
-    color:#475569;
-
-    margin-bottom:15px;
-}
-
-.about strong{
-    color:#172554;
-}
-
-
-/* =========================
-   SERVICES
-========================= */
-
-.services{
-    display:grid;
-
-    grid-template-columns:
-    repeat(2,1fr);
-
-    gap:22px;
-}
-
-.card{
-    background:white;
-
-    border:1px solid #e5e7eb;
-
-    border-radius:17px;
+    border:1px solid var(--line);
 
     padding:30px;
 
-    transition:.25s;
-
-    box-shadow:0 7px 22px rgba(0,0,0,.04);
+    border-radius:4px;
 }
 
-.card:hover{
-    transform:translateY(-4px);
-
-    box-shadow:0 14px 30px rgba(0,0,0,.09);
-}
-
-.icon{
-    font-size:36px;
-
-    margin-bottom:10px;
-}
-
-.card h3{
-    color:#1d4ed8;
-
-    font-size:20px;
-
-    margin-bottom:8px;
-}
-
-.card p{
-    color:#64748b;
-
-    font-size:14px;
-
-    margin-bottom:12px;
-}
-
-.card ul{
-    padding-left:18px;
-
-    color:#475569;
-
-    font-size:13px;
-}
-
-
-/* =========================
-   PORTFOLIO
-========================= */
-
-.portfolio{
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:18px;
-}
-
-.project{
-    background:white;
-
-    border:1px solid #e5e7eb;
-
-    border-radius:15px;
-
-    padding:25px;
-}
-
-.project-icon{
-    font-size:30px;
-
-    margin-bottom:10px;
-}
-
-.project h3{
-    color:#172554;
-
-    font-size:18px;
-}
-
-.project p{
-    color:#64748b;
-
-    font-size:13px;
-
-    margin-top:6px;
-}
-
-
-/* =========================
-   CERTIFICATES
-========================= */
-
-.certificate-box{
-    max-width:800px;
-
-    margin:auto;
-
-    background:white;
-
-    border:1px dashed #93c5fd;
-
-    border-radius:17px;
-
-    padding:38px;
-
-    text-align:center;
-}
-
-.certificate-box .certificate-icon{
-    font-size:45px;
-
-    margin-bottom:10px;
-}
-
-.certificate-box h3{
-    color:#1e3a8a;
-
-    margin-bottom:8px;
-}
-
-.certificate-box p{
-    color:#64748b;
-
-    font-size:14px;
-}
-
-.certificate-note{
-    margin-top:15px;
-
-    display:inline-block;
-
-    background:#eff6ff;
-
-    color:#1d4ed8;
-
-    padding:8px 14px;
-
-    border-radius:8px;
-
-    font-size:12px;
-}
-
-
-/* =========================
-   STUDENT PATHWAY
-========================= */
-
-.pathway{
-    background:linear-gradient(
-        135deg,
-        #eff6ff,
-        #f8fafc
-    );
-
-    border:1px solid #bfdbfe;
-
-    border-radius:20px;
-
-    padding:42px 28px;
-
-    text-align:center;
-}
-
-.pathway h3{
-    color:#1e3a8a;
-
+.about-card h3{
+    font-family:var(--serif);
     font-size:27px;
-
-    margin-bottom:12px;
 }
 
-.pathway p{
-    max-width:800px;
+.about-card p{
+    max-width:780px;
 
-    margin:auto;
+    margin-top:13px;
 
-    color:#475569;
+    color:#555;
+    font-size:14px;
 }
 
-.guidance{
-    margin-top:28px;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:14px;
-}
-
-.guidance div{
-    background:white;
-
-    border:1px solid #dbeafe;
-
-    border-radius:11px;
-
-    padding:16px;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    color:#334155;
-}
-
-
-/* =========================
-   CONTACT
-========================= */
+/* ================= CONTACT ================= */
 
 .contact{
-    background:#0f172a;
+    padding:38px;
 
+    background:var(--ink);
     color:white;
 
-    text-align:center;
-
-    border-radius:20px;
-
-    padding:55px 20px;
+    border-radius:4px;
 }
 
 .contact h2{
+    font-family:var(--serif);
     font-size:31px;
 }
 
 .contact p{
-    color:#cbd5e1;
-
-    margin:8px auto 20px;
-
-    max-width:600px;
+    margin-top:8px;
+    color:#bbb;
 }
 
-.contact-btn{
+.email-button{
     display:inline-block;
 
-    padding:13px 23px;
+    margin-top:20px;
 
-    border-radius:9px;
+    padding:11px 17px;
 
-    margin:5px;
+    border-radius:4px;
 
-    font-weight:bold;
+    background:white;
+    color:var(--ink);
+
+    font-size:12px;
+    font-weight:800;
 }
 
-.whatsapp{
-    background:#16a34a;
+/* ================= ARTICLE READER ================= */
 
-    color:white;
+.modal{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    z-index:3000;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.72);
+
+    overflow:auto;
 }
 
-.email{
+.modal.show{
+    display:block;
+}
+
+.article{
+    max-width:780px;
+
+    margin:55px auto;
+
+    padding:38px;
+
+    background:var(--paper);
+
+    border-radius:5px;
+}
+
+.close{
+    float:right;
+
+    border:1px solid var(--line);
+
     background:white;
 
-    color:#0f172a;
+    padding:5px 10px;
+
+    cursor:pointer;
+
+    border-radius:4px;
 }
 
+.article h1{
+    clear:both;
 
-/* =========================
-   FOOTER
-========================= */
+    padding-top:20px;
+
+    font-family:var(--serif);
+    font-size:39px;
+    line-height:1.15;
+}
+
+.article-meta{
+    margin-top:8px;
+
+    color:#888;
+
+    font-size:11px;
+}
+
+.article-image{
+    width:100%;
+
+    max-height:450px;
+
+    object-fit:cover;
+
+    margin-top:25px;
+
+    border-radius:4px;
+}
+
+.article-body{
+    margin-top:25px;
+
+    white-space:pre-line;
+
+    color:#444;
+
+    font-family:var(--serif);
+    font-size:18px;
+    line-height:1.9;
+}
+
+.article-share{
+    margin-top:25px;
+
+    padding:10px 15px;
+
+    border:0;
+    border-radius:4px;
+
+    background:var(--accent);
+    color:white;
+
+    cursor:pointer;
+}
+
+/* ================= FOOTER ================= */
 
 footer{
-    background:#020617;
+    background:#111;
 
-    color:#94a3b8;
+    color:#888;
 
     text-align:center;
 
-    padding:35px 20px;
-}
-
-footer strong{
-    color:white;
-}
-
-.footer-links{
-    margin:12px 0;
-}
-
-.footer-links a{
-    color:#94a3b8;
-
-    margin:0 8px;
+    padding:38px 20px;
 
     font-size:12px;
 }
 
+footer strong{
+    color:white;
 
-/* =========================
-   SEARCH RESULT
-========================= */
+    font-family:var(--serif);
 
-#searchResult{
-    display:none;
-
-    max-width:1080px;
-
-    margin:15px auto;
-
-    padding:12px 18px;
-
-    background:#dbeafe;
-
-    color:#1e3a8a;
-
-    border-radius:9px;
+    font-size:17px;
 }
 
+/* ================= MOBILE ================= */
 
-/* =========================
-   MOBILE
-========================= */
+@media(max-width:900px){
 
-@media(max-width:850px){
+    .nav{
+        display:none;
+    }
 
-    .nav-links,
+    .featured{
+        grid-template-columns:1fr;
+    }
+
+    .posts{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero h1{
+        font-size:47px;
+    }
+}
+
+@media(max-width:620px){
+
+    .header-inner{
+        height:66px;
+        padding:0 15px;
+    }
+
+    .brand-title{
+        font-size:17px;
+    }
+
+    .brand-subtitle{
+        display:none;
+    }
+
     .search{
         display:none;
     }
 
     .hero{
-        padding:75px 18px;
+        padding:55px 18px 45px;
     }
 
     .hero h1{
-        font-size:39px;
+        font-size:38px;
     }
 
-    .hero p{
+    .hero-text{
         font-size:15px;
     }
 
-    .stats{
-        grid-template-columns:
-        repeat(2,1fr);
-
-        margin-top:20px;
+    .container{
+        padding:38px 15px;
     }
 
-    .services{
+    .section-head{
+        display:block;
+    }
+
+    .section-head p{
+        margin-top:5px;
+    }
+
+    .posts{
         grid-template-columns:1fr;
     }
 
-    .portfolio{
-        grid-template-columns:1fr;
+    .featured-main{
+        min-height:300px;
+        padding:25px;
     }
 
-    .guidance{
-        grid-template-columns:1fr;
-    }
-
-    .heading h2{
+    .featured-main h3{
         font-size:29px;
     }
 
-    .about{
-        padding:28px 22px;
+    .article{
+        padding:25px 20px;
+        margin:25px auto;
     }
-}
 
-@media(max-width:430px){
+    .article h1{
+        font-size:31px;
+    }
 
-    .brand-name{
+    .article-body{
         font-size:17px;
     }
 
-    .brand-tag{
-        font-size:9px;
-    }
-
-    .logo{
-        width:40px;
-        height:40px;
-    }
-
-    .hero h1{
-        font-size:33px;
-    }
-
-    .btn{
-        width:90%;
-    }
-
-    .stats{
-        gap:9px;
-    }
-
-    .stat{
-        padding:16px 8px;
-    }
 }
 
 </style>
@@ -880,14 +839,11 @@ footer strong{
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- ================= HEADER ================= -->
 
-<header>
+<header class="site-header">
 
-<div class="navbar">
-
+<div class="header-inner">
 
 <a href="#home" class="brand">
 
@@ -897,12 +853,12 @@ NSD
 
 <div>
 
-<div class="brand-name">
-NSD
+<div class="brand-title">
+NSD Knowledge Hub
 </div>
 
-<div class="brand-tag">
-Naushad Siddiqui
+<div class="brand-subtitle">
+News · Articles · Thoughts
 </div>
 
 </div>
@@ -910,86 +866,47 @@ Naushad Siddiqui
 </a>
 
 
-<div class="nav-area">
+<nav class="nav">
+
+<a href="#latest">Latest</a>
+<a href="#news">News</a>
+<a href="#thoughts">Thoughts</a>
+<a href="#kota">Kota Perspective</a>
+
+</nav>
 
 
-<div class="nav-links">
-
-<a href="#about">About</a>
-
-<a href="#services">Services</a>
-
-<a href="#portfolio">Portfolio</a>
-
-<a href="#contact">Contact</a>
-
-</div>
-
-
-<div class="search">
-
-<span>🔍</span>
+<div class="header-actions">
 
 <input
-id="searchInput"
+id="search"
+class="search"
+type="search"
 placeholder="Search..."
-onkeyup="searchWebsite()">
+oninput="renderPosts()"
+>
 
-</div>
 
-
-<div class="menu">
+<div class="menu-wrap">
 
 <button
 class="menu-btn"
 onclick="toggleMenu()">
-⋮
+
+☰
+
 </button>
 
 
-<div
-id="menuList"
-class="menu-list">
+<div id="menu" class="menu">
 
-<a href="#home">
-Home
-</a>
-
-<a href="#about">
-About Me
-</a>
-
-<a href="#services">
-NSD AI Learner
-</a>
-
-<a href="#services">
-Photo Editor
-</a>
-
-<a href="#services">
-Resume & Documents
-</a>
-
-<a href="#services">
-Data Analytics
-</a>
-
-<a href="#portfolio">
-Portfolio
-</a>
-
-<a href="#certificates">
-Certificates
-</a>
-
-<a href="#student">
-Student Pathway
-</a>
-
-<a href="#contact">
-Contact
-</a>
+<a href="#home">Home</a>
+<a href="#latest">Latest Posts</a>
+<a href="#news">News & Articles</a>
+<a href="#thoughts">Thoughts</a>
+<a href="#kota">Kota Perspective</a>
+<a href="#about">About Naushad</a>
+<a href="#contact">Contact</a>
 
 </div>
 
@@ -1002,181 +919,314 @@ Contact
 </header>
 
 
-<div id="searchResult"></div>
+<!-- ================= HERO ================= -->
 
+<section id="home" class="hero">
 
-<!-- =========================
-     HERO
-========================= -->
-
-<section
-class="hero"
-id="home">
-
-<div class="hero-small">
-NSD • NAUSHAD SIDDIQUI
+<div class="kicker">
+NSD KNOWLEDGE HUB
 </div>
-
 
 <h1>
-
-Learn.
-Create.
-Analyze.
-<span>Guide.</span>
-
+News, ideas and
+<span>perspectives.</span>
 </h1>
 
+<p class="hero-text">
 
-<p>
-
-A professional personal platform for
-AI learning, creative work, professional
-documents, data analytics and student guidance.
+A personal publishing platform by
+<strong>Naushad Siddiqui</strong> where
+news, articles, thoughts, photographs and
+Kota perspectives are shared.
 
 </p>
 
+<div class="hero-line"></div>
 
-<div class="buttons">
-
-<a
-href="#services"
-class="btn primary">
-Explore NSD
-</a>
+</section>
 
 
-<a
-href="#contact"
-class="btn secondary">
-Connect With Me
-</a>
+<main class="container">
+
+
+<!-- ================= LATEST ================= -->
+
+<section id="latest" class="section">
+
+<div class="section-head">
+
+<div>
+<h2>Latest</h2>
+</div>
+
+<p>
+Latest posts from NSD Knowledge Hub
+</p>
+
+</div>
+
+
+<div class="categories">
+
+<button
+class="category active"
+onclick="setCategory('All',this)">
+All
+</button>
+
+<button
+class="category"
+onclick="setCategory('News',this)">
+News
+</button>
+
+<button
+class="category"
+onclick="setCategory('Article',this)">
+Articles
+</button>
+
+<button
+class="category"
+onclick="setCategory('Thought',this)">
+Thoughts
+</button>
+
+<button
+class="category"
+onclick="setCategory('Photo',this)">
+Photos
+</button>
+
+</div>
+
+
+<div id="posts" class="posts"></div>
+
+</section>
+
+
+<!-- ================= FEATURED ================= -->
+
+<section class="section">
+
+<div class="section-head">
+
+<h2>Featured</h2>
+
+<p>Selected post</p>
+
+</div>
+
+
+<div class="featured">
+
+
+<div class="featured-main">
+
+<div class="post-type">
+Featured Article
+</div>
+
+<h3>
+Your most important story can appear here
+</h3>
+
+<p>
+Use this space for your latest or most important
+article, news story or special post.
+</p>
+
+</div>
+
+
+<div class="featured-side">
+
+<div class="mini-card"
+onclick="openPost(
+'Article',
+'Featured Article',
+'Write your complete featured article here.\\n\\nYou can add as many paragraphs as you need.',
+'')">
+
+<div class="post-type">
+Article
+</div>
+
+<h3>
+Featured Article
+</h3>
+
+<p>
+Open and read the complete article.
+</p>
+
+</div>
+
+
+<div class="mini-card"
+onclick="openPost(
+'Photo',
+'Featured Photo',
+'Write the caption or description of your photograph here.',
+'')">
+
+<div class="post-type">
+Photo
+</div>
+
+<h3>
+Featured Photo
+</h3>
+
+<p>
+A photograph with your caption.
+</p>
+
+</div>
+
+</div>
 
 </div>
 
 </section>
 
 
-<!-- =========================
-     STATS
-========================= -->
+<!-- ================= NEWS ================= -->
 
-<div class="stats">
+<section id="news" class="section">
 
-<div class="stat">
+<div class="section-head">
 
-<strong>AI</strong>
-
-<span>
-Learning
-</span>
-
-</div>
-
-
-<div class="stat">
-
-<strong>Creative</strong>
-
-<span>
-Photo Editing
-</span>
-
-</div>
-
-
-<div class="stat">
-
-<strong>Data</strong>
-
-<span>
-Analytics
-</span>
-
-</div>
-
-
-<div class="stat">
-
-<strong>Student</strong>
-
-<span>
-Guidance
-</span>
-
-</div>
-
-</div>
-
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section
-id="about">
-
-<div class="heading">
-
-<h2>
-About Me
-</h2>
+<h2>News & Articles</h2>
 
 <p>
+Information and detailed stories
+</p>
+
+</div>
+
+
+<div class="kota">
+
+<h3>
+A place for your published work
+</h3>
+
+<p>
+Publish news, explainers, articles and
+well-researched stories here. Important
+information should be checked against
+reliable sources before publication.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= THOUGHTS ================= -->
+
+<section id="thoughts" class="section">
+
+<div class="section-head">
+
+<h2>Thoughts & Posts</h2>
+
+<p>
+Short ideas and personal observations
+</p>
+
+</div>
+
+
+<div class="kota">
+
+<h3>
+Your thoughts can become posts
+</h3>
+
+<p>
+Use this section for short thoughts,
+opinions, observations, captions or
+longer personal posts. You can also
+attach a photograph to a post.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= KOTA ================= -->
+
+<section id="kota" class="section">
+
+<div class="section-head">
+
+<h2>Kota Perspective</h2>
+
+<p>
+Experience and observations
+</p>
+
+</div>
+
+
+<div class="kota">
+
+<h3>
+Understanding the Kota experience
+</h3>
+
+<p>
+A dedicated section for your observations
+and writing about students, coaching,
+education, preparation, expectations,
+pressure and life around Kota.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="section">
+
+<div class="section-head">
+
+<h2>About Naushad</h2>
+
+<p>
+About the person behind the website
+</p>
+
+</div>
+
+
+<div class="about-card">
+
+<h3>
 Naushad Siddiqui
-</p>
-
-</div>
-
-
-<div class="about">
-
-<h3>
-I am Naushad Siddiqui
 </h3>
 
-
 <p>
-
-I am interested in learning modern
-digital skills and turning that learning
-into practical work.
-
+I am Naushad Siddiqui, the creator of
+NSD Knowledge Hub.
 </p>
 
-
 <p>
-
-My interests include
-<strong>
-AI, programming, photo editing,
-professional documents, data analytics
-and student guidance.
-</strong>
-
+This website is my personal publishing
+space for sharing news, articles,
+thoughts, photographs and perspectives.
 </p>
 
-
 <p>
-
-I also have experience with the
-<strong>Kota coaching environment</strong>,
-which has helped me understand the
-academic pressure, preparation challenges
-and expectations that students and families
-can experience.
-
-</p>
-
-
-<p>
-
-NSD is my personal platform where I bring
-these interests together to
-<strong>
-learn, create, analyze and guide.
-</strong>
-
+The purpose is simple: to write, document
+ideas and share useful information in a
+clear and readable format.
 </p>
 
 </div>
@@ -1184,448 +1234,28 @@ learn, create, analyze and guide.
 </section>
 
 
-<!-- =========================
-     SERVICES
-========================= -->
+<!-- ================= CONTACT ================= -->
 
-<section
-id="services">
-
-<div class="heading">
-
-<h2>
-What I Work On
-</h2>
-
-<p>
-The main areas of NSD
-</p>
-
-</div>
-
-
-<div class="services">
-
-
-<div class="card">
-
-<div class="icon">
-🤖
-</div>
-
-<h3>
-NSD AI Learner
-</h3>
-
-<p>
-My journey of learning AI and programming
-through practical projects.
-</p>
-
-<ul>
-
-<li>AI tools</li>
-
-<li>Python</li>
-
-<li>C programming</li>
-
-<li>AI-assisted work</li>
-
-<li>Practical projects</li>
-
-</ul>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">
-🖼️
-</div>
-
-<h3>
-Photo Editor
-</h3>
-
-<p>
-Creative image editing and visual content.
-</p>
-
-<ul>
-
-<li>Photo editing</li>
-
-<li>Image enhancement</li>
-
-<li>Creative designs</li>
-
-<li>Digital visuals</li>
-
-</ul>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">
-📄
-</div>
-
-<h3>
-Resume & Documents
-</h3>
-
-<p>
-Professional digital documents for students
-and job seekers.
-</p>
-
-<ul>
-
-<li>Resume creation</li>
-
-<li>MS Word</li>
-
-<li>Formatting</li>
-
-<li>Reports</li>
-
-<li>PDF documents</li>
-
-</ul>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">
-📊
-</div>
-
-<h3>
-Data Analytics
-</h3>
-
-<p>
-Learning how to organize and understand data.
-</p>
-
-<ul>
-
-<li>Excel</li>
-
-<li>Google Sheets</li>
-
-<li>Data organization</li>
-
-<li>Reports</li>
-
-<li>Python data analysis</li>
-
-</ul>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">
-🎓
-</div>
-
-<h3>
-Student Pathway
-</h3>
-
-<p>
-Student guidance and parent-student
-communication.
-</p>
-
-<ul>
-
-<li>Study planning</li>
-
-<li>Career discussions</li>
-
-<li>Drop-year discussions</li>
-
-<li>Parent support</li>
-
-<li>Communication</li>
-
-</ul>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     PORTFOLIO
-========================= -->
-
-<section
-id="portfolio">
-
-<div class="heading">
-
-<h2>
-Portfolio
-</h2>
-
-<p>
-Projects and practical work
-</p>
-
-</div>
-
-
-<div class="portfolio">
-
-
-<div class="project">
-
-<div class="project-icon">
-🌐
-</div>
-
-<h3>
-NSD Website
-</h3>
-
-<p>
-A personal professional website built
-to present my learning journey and work.
-</p>
-
-</div>
-
-
-<div class="project">
-
-<div class="project-icon">
-🤖
-</div>
-
-<h3>
-AI Learning Projects
-</h3>
-
-<p>
-Practical experiments and projects while
-learning AI and programming.
-</p>
-
-</div>
-
-
-<div class="project">
-
-<div class="project-icon">
-📊
-</div>
-
-<h3>
-Data Projects
-</h3>
-
-<p>
-Future projects involving spreadsheets,
-data analysis and Python.
-</p>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     CERTIFICATES
-========================= -->
-
-<section
-id="certificates">
-
-<div class="heading">
-
-<h2>
-Certificates
-</h2>
-
-<p>
-My professional learning achievements
-</p>
-
-</div>
-
-
-<div class="certificate-box">
-
-<div class="certificate-icon">
-🏆
-</div>
-
-<h3>
-Certificates & Achievements
-</h3>
-
-<p>
-
-This section is ready for adding certificates,
-course completions and other professional
-achievements in the future.
-
-</p>
-
-
-<div class="certificate-note">
-Certificate section ready
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     STUDENT PATHWAY
-========================= -->
-
-<section
-id="student">
-
-<div class="heading">
-
-<h2>
-Student Pathway
-</h2>
-
-<p>
-Understanding students and parents
-</p>
-
-</div>
-
-
-<div class="pathway">
-
-<h3>
-Students and Parents Both Matter
-</h3>
-
-
-<p>
-
-Students may face academic pressure,
-uncertainty and difficult decisions about
-their future.
-
-Parents and guardians may face concerns
-about education, finances, expectations and
-career security.
-
-Sometimes these different perspectives
-create conflict.
-
-Student Pathway is intended to encourage
-calm, practical and respectful discussion.
-
-</p>
-
-
-<div class="guidance">
-
-<div>
-🎓 Student Guidance
-</div>
-
-<div>
-📚 Study Planning
-</div>
-
-<div>
-🧭 Drop-Year Discussion
-</div>
-
-<div>
-🎯 Career Discussion
-</div>
-
-<div>
-👨‍👩‍👦 Parent Support
-</div>
-
-<div>
-💬 Communication
-</div>
-
-</div>
-
-<br>
-
-
-<p>
-
-<strong>Note:</strong>
-This is general, experience-based guidance
-and does not guarantee admission, selection,
-rank or career outcomes.
-
-</p>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     CONTACT
-========================= -->
-
-<section
-id="contact">
+<section id="contact" class="section">
 
 <div class="contact">
 
 <h2>
-Let's Connect
+Contact
 </h2>
 
-
 <p>
-
-For digital projects, learning discussions
-or student-related conversations.
-
+For feedback, suggestions, corrections,
+collaboration or general enquiries.
 </p>
 
+<!-- Replace this email with your final public email -->
 
 <a
-href="https://wa.me/919649585135"
-target="_blank"
-class="contact-btn whatsapp">
+class="email-button"
+href="mailto:YOUR-EMAIL@example.com">
 
-💬 Text Me on WhatsApp
-
-</a>
-
-
-<a
-href="mailto:naushad201010000@gmail.com"
-class="contact-btn email">
-
-✉️ Email Me
+Email
 
 </a>
 
@@ -1634,135 +1264,555 @@ class="contact-btn email">
 </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-<p>
-<strong>NSD • Naushad Siddiqui</strong>
-</p>
-
-<p>
-Learn • Create • Analyze • Guide
-</p>
+</main>
 
 
-<div class="footer-links">
+<!-- ================= ARTICLE READER ================= -->
 
-<a href="#home">Home</a>
+<div id="modal" class="modal">
 
-<a href="#about">About</a>
+<div class="article">
 
-<a href="#services">Services</a>
+<button
+class="close"
+onclick="closePost()">
 
-<a href="#portfolio">Portfolio</a>
+✕
 
-<a href="#certificates">Certificates</a>
+</button>
 
-<a href="#student">Student Pathway</a>
 
-<a href="#contact">Contact</a>
+<div
+id="articleType"
+class="post-type">
+</div>
+
+
+<h1 id="articleTitle">
+</h1>
+
+
+<div
+id="articleDate"
+class="article-meta">
+</div>
+
+
+<img
+id="articleImage"
+class="article-image"
+style="display:none"
+alt="Post image"
+>
+
+
+<div
+id="articleBody"
+class="article-body">
+</div>
+
+
+<button
+class="article-share"
+onclick="shareCurrentPost()">
+
+Share Post
+
+</button>
+
+</div>
 
 </div>
 
 
-<p>
-© 2026 NSD. All rights reserved.
-</p>
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<strong>
+NSD Knowledge Hub
+</strong>
+
+<br><br>
+
+© 2026 NSD Knowledge Hub · Naushad Siddiqui
 
 </footer>
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
 
-/* THREE DOT MENU */
+/* =====================================================
+   POSTS
+   YAHAN AAP APNE REAL POSTS ADD KAROGE
+===================================================== */
 
-function toggleMenu(){
+const posts = [
 
-    const menu =
-    document.getElementById("menuList");
+{
+    type:"News",
 
-    if(menu.style.display === "block"){
+    title:"Your First News Article",
 
-        menu.style.display = "none";
+    excerpt:"Write a short summary of your news article here.",
 
-    }else{
+    date:"10 August 2026",
 
-        menu.style.display = "block";
+    image:"",
 
-    }
+    content:
+`Write your complete news article here.
+
+You can write multiple paragraphs.
+
+Add verified information, details and your own explanation here.`
+},
+
+{
+    type:"Article",
+
+    title:"Your First Article",
+
+    excerpt:"A short introduction to your article.",
+
+    date:"10 August 2026",
+
+    image:"",
+
+    content:
+`Write your complete article here.
+
+Use separate paragraphs to make the article easy to read.
+
+You can make this as long as you want.`
+},
+
+{
+    type:"Thought",
+
+    title:"A Thought Worth Sharing",
+
+    excerpt:"Share a thought, observation or personal post.",
+
+    date:"10 August 2026",
+
+    image:"",
+
+    content:
+`Write your thought here.
+
+It can be a short post or a detailed personal reflection.`
+},
+
+{
+    type:"Photo",
+
+    title:"Your Photo Post",
+
+    excerpt:"Add a photograph with a caption.",
+
+    date:"10 August 2026",
+
+    image:"",
+
+    content:
+`Write the caption or description of your photograph here.`
+},
+
+{
+    type:"Article",
+
+    title:"Kota Perspective",
+
+    excerpt:"An article based on observations and experience.",
+
+    date:"10 August 2026",
+
+    image:"",
+
+    content:
+`Write your Kota Perspective article here.
+
+You can discuss students, coaching, education,
+expectations and experiences.`
+}
+
+];
+
+
+let selectedCategory = "All";
+
+let currentPost = null;
+
+
+/* ================= RENDER POSTS ================= */
+
+function renderPosts(){
+
+    const container =
+        document.getElementById("posts");
+
+    const search =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+
+    container.innerHTML = "";
+
+
+    posts.forEach((post,index)=>{
+
+        const categoryMatch =
+            selectedCategory === "All" ||
+            post.type === selectedCategory;
+
+
+        const searchMatch =
+            post.title
+            .toLowerCase()
+            .includes(search) ||
+
+            post.excerpt
+            .toLowerCase()
+            .includes(search);
+
+
+        if(!categoryMatch || !searchMatch){
+            return;
+        }
+
+
+        const article =
+            document.createElement("article");
+
+        article.className = "post";
+
+
+        let imageHTML = "";
+
+        if(post.image){
+
+            imageHTML = `
+            <img
+            class="post-image"
+            src="${post.image}"
+            alt="${post.title}">
+            `;
+
+        }
+
+
+        article.innerHTML = `
+
+            ${imageHTML}
+
+            <div class="post-top">
+
+                <div class="post-type">
+                    ${post.type}
+                </div>
+
+                <h3>
+                    ${post.title}
+                </h3>
+
+                <p class="post-excerpt">
+                    ${post.excerpt}
+                </p>
+
+            </div>
+
+            <div class="post-bottom">
+
+                <span class="date">
+                    ${post.date}
+                </span>
+
+                <div class="post-buttons">
+
+                    <button
+                    class="read"
+                    onclick="openPostByIndex(${index})">
+                    Read
+                    </button>
+
+                    <button
+                    class="share-btn"
+                    onclick="sharePost(${index})">
+                    Share
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(article);
+
+    });
+
 }
 
 
-/* SEARCH */
+/* ================= CATEGORY ================= */
 
-function searchWebsite(){
+function setCategory(category,button){
 
-    const input =
+    selectedCategory = category;
+
+
     document
-    .getElementById("searchInput")
-    .value
-    .toLowerCase()
-    .trim();
-
-    const result =
-    document.getElementById("searchResult");
+    .querySelectorAll(".category")
+    .forEach(btn=>{
+        btn.classList.remove("active");
+    });
 
 
-    if(input === ""){
+    button.classList.add("active");
 
-        result.style.display = "none";
 
+    renderPosts();
+
+}
+
+
+/* ================= OPEN POST ================= */
+
+function openPostByIndex(index){
+
+    const post = posts[index];
+
+    currentPost = post;
+
+
+    document
+    .getElementById("articleType")
+    .textContent = post.type;
+
+
+    document
+    .getElementById("articleTitle")
+    .textContent = post.title;
+
+
+    document
+    .getElementById("articleDate")
+    .textContent = post.date;
+
+
+    document
+    .getElementById("articleBody")
+    .textContent = post.content;
+
+
+    const image =
+        document.getElementById("articleImage");
+
+
+    if(post.image){
+
+        image.src = post.image;
+        image.style.display = "block";
+
+    }else{
+
+        image.style.display = "none";
+
+    }
+
+
+    document
+    .getElementById("modal")
+    .classList.add("show");
+
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+/* ================= OPEN CUSTOM POST ================= */
+
+function openPost(type,title,content,image){
+
+    currentPost = {
+        type:type,
+        title:title,
+        content:content,
+        image:image,
+        date:""
+    };
+
+
+    document
+    .getElementById("articleType")
+    .textContent = type;
+
+
+    document
+    .getElementById("articleTitle")
+    .textContent = title;
+
+
+    document
+    .getElementById("articleDate")
+    .textContent = "";
+
+
+    document
+    .getElementById("articleBody")
+    .textContent = content;
+
+
+    const articleImage =
+        document.getElementById("articleImage");
+
+
+    if(image){
+
+        articleImage.src = image;
+        articleImage.style.display = "block";
+
+    }else{
+
+        articleImage.style.display = "none";
+
+    }
+
+
+    document
+    .getElementById("modal")
+    .classList.add("show");
+
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+/* ================= CLOSE POST ================= */
+
+function closePost(){
+
+    document
+    .getElementById("modal")
+    .classList.remove("show");
+
+
+    document.body.style.overflow = "auto";
+
+}
+
+
+/* ================= SHARE ================= */
+
+async function sharePost(index){
+
+    const post = posts[index];
+
+    currentPost = post;
+
+
+    const shareData = {
+
+        title:post.title,
+
+        text:
+        post.excerpt +
+        " — NSD Knowledge Hub",
+
+        url:window.location.href
+
+    };
+
+
+    try{
+
+        if(navigator.share){
+
+            await navigator.share(shareData);
+
+        }else{
+
+            await navigator.clipboard
+            .writeText(window.location.href);
+
+            alert("Post link copied!");
+
+        }
+
+    }catch(error){
+
+        console.log("Sharing cancelled.");
+
+    }
+
+}
+
+
+/* ================= SHARE CURRENT ================= */
+
+function shareCurrentPost(){
+
+    if(!currentPost){
         return;
     }
 
 
-    const pageText =
-    document.body.innerText.toLowerCase();
-
-
-    if(pageText.includes(input)){
-
-        result.innerText =
-        "✓ Information found on this website.";
-
-    }else{
-
-        result.innerText =
-        "No matching information found.";
-
-    }
-
-
-    result.style.display = "block";
+    sharePost(
+        posts.indexOf(currentPost)
+    );
 
 }
 
 
-/* CLOSE MENU */
+/* ================= MENU ================= */
 
-document.addEventListener(
-"click",
-function(event){
+function toggleMenu(){
 
-    if(!event.target.closest(".menu")){
+    document
+    .getElementById("menu")
+    .classList.toggle("show");
 
-        document.getElementById(
-        "menuList"
-        ).style.display = "none";
+}
+
+
+/* ================= CLOSE MENU ================= */
+
+document
+.addEventListener("click",function(event){
+
+    const menu =
+        document.getElementById("menu");
+
+    const button =
+        document.querySelector(".menu-btn");
+
+
+    if(
+        !menu.contains(event.target) &&
+        !button.contains(event.target)
+    ){
+
+        menu.classList.remove("show");
 
     }
 
 });
 
-</script>
 
+/* ================= START ================= */
+
+renderPosts();
+
+</script>
 
 </body>
 </html>
+
+
+   
