@@ -65,7 +65,9 @@ textarea{
     position:sticky;
     top:0;
     z-index:1000;
+
     background:rgba(248,247,243,.97);
+
     border-bottom:1px solid var(--line);
 }
 
@@ -74,9 +76,11 @@ textarea{
     height:74px;
     margin:auto;
     padding:0 22px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:20px;
 }
 
@@ -89,12 +93,16 @@ textarea{
 .logo{
     width:43px;
     height:43px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     background:var(--ink);
     color:white;
+
     border-radius:5px;
+
     font-size:12px;
     font-weight:900;
     letter-spacing:1px;
@@ -106,7 +114,7 @@ textarea{
     font-weight:bold;
 }
 
-/* ================= CONTENT LAYOUT ================= */
+/* ================= MAIN ================= */
 
 .container{
     max-width:750px;
@@ -116,211 +124,686 @@ textarea{
 
 .card{
     background:var(--white);
+
     border:1px solid var(--line);
+
     border-radius:8px;
+
     padding:28px;
+
     margin-bottom:24px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.02);
+
+    box-shadow:0 2px 8px rgba(0,0,0,.02);
 }
 
-.card h2, .card h3{
+.card h2,
+.card h3{
     font-family:var(--serif);
+
     color:var(--accent);
+
     margin-bottom:15px;
 }
 
 label{
     display:block;
+
     font-size:14px;
     font-weight:bold;
+
     margin-bottom:5px;
+
     color:var(--ink);
 }
 
-input, textarea{
+input,
+textarea{
+
     width:100%;
+
     padding:12px;
+
     margin-bottom:15px;
+
     border:1px solid var(--line);
+
     border-radius:5px;
+
     background:var(--paper);
+
+    outline:none;
+}
+
+input:focus,
+textarea:focus{
+
+    border-color:var(--accent);
+
 }
 
 button{
+
     background:var(--accent);
+
     color:white;
+
     border:none;
+
     padding:12px 20px;
+
     border-radius:5px;
+
     cursor:pointer;
+
     font-weight:bold;
-    transition:background 0.2s;
+
+    transition:background .2s;
+
     margin-right:8px;
 }
 
 button:hover{
+
     background:var(--accent-dark);
+
 }
 
 button.signup-btn{
+
     background:#2a7b4c;
+
 }
 
 .info-section{
+
     border-top:1px solid var(--line);
+
     padding-top:15px;
+
     margin-top:15px;
+
     font-size:14px;
+
     color:var(--muted);
+
 }
 
-#status-msg, #post-msg{
+#status-msg,
+#post-msg{
+
     font-weight:bold;
+
     margin-top:10px;
+
 }
 
 #article-section{
+
     display:none;
+
+}
+
+/* ================= CONTACT ================= */
+
+.contact-buttons{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:15px;
+
+}
+
+.contact-btn{
+
+    display:inline-block;
+
+    padding:10px 15px;
+
+    border-radius:5px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+}
+
+.whatsapp{
+
+    background:#16854b;
+
+    color:white;
+
+}
+
+.email{
+
+    background:var(--accent);
+
+    color:white;
+
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+    .header-inner{
+
+        height:66px;
+
+        padding:0 15px;
+
+    }
+
+    .brand-title{
+
+        font-size:17px;
+
+    }
+
+    .container{
+
+        margin:25px auto;
+
+        padding:0 15px;
+
+    }
+
+    .card{
+
+        padding:22px;
+
+    }
+
+    button{
+
+        margin-bottom:8px;
+
+    }
+
 }
 
 </style>
+
 </head>
+
+
 <body>
 
+
+<!-- ================= HEADER ================= -->
+
 <header class="site-header">
-  <div class="header-inner">
-    <div class="brand">
-      <div class="logo">NSD</div>
-      <div class="brand-title">NSD Knowledge Hub</div>
-    </div>
-  </div>
-</header>
 
-<div class="container">
+<div class="header-inner">
 
-  <!-- 1. LOGIN / SIGN UP -->
-  <div class="card" id="auth-card">
-    <h2>Login / Sign Up</h2>
-    
-    <label>Email</label>
-    <input type="email" id="user-email" placeholder="Apna Email daliye">
-    
-    <label>Password</label>
-    <input type="password" id="user-password" placeholder="Password daliye">
-    
-    <button onclick="handleLogin()">Log In</button>
-    <button onclick="handleSignUp()" class="signup-btn">Sign Up</button>
-    <p id="status-msg"></p>
-  </div>
+<div class="brand">
 
-  <!-- 2. ARTICLE UPLOAD (Login karne par dikhega) -->
-  <div class="card" id="article-section">
-    <h2>Upload Article</h2>
-    
-    <label>Title</label>
-    <input type="text" id="article-title" placeholder="Article ka Title daliye">
-    
-    <label>Content</label>
-    <textarea id="article-content" rows="6" placeholder="Apna Article yahan likhein..."></textarea>
-    
-    <button onclick="uploadArticle()">Publish Article</button>
-    <p id="post-msg"></p>
-  </div>
+<div class="logo">
+NSD
+</div>
 
-  <!-- 3. CONTACT & DISCLAIMER -->
-  <div class="card">
-    <div class="info-section" style="border-top:none; padding-top:0;">
-      <h3>Contact Us</h3>
-      <p><strong>Email:</strong> naushad201010000@email.com</p>
-    </div>
-
-    <div class="info-section">
-      <h3>Disclaimer</h3>
-      <p>NSD Knowledge Hub provides digital and general guidance.</p>
-      <p>Our student support is for informational purposes only and does not replace qualified teachers or professional counselors.</p>
-      <p>We do not guarantee exam rank or career outcomes.</p>
-    </div>
-  </div>
+<div class="brand-title">
+NSD Knowledge Hub
+</div>
 
 </div>
 
+</div>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- ================= LOGIN ================= -->
+
+<div class="card" id="auth-card">
+
+<h2>
+Admin Login
+</h2>
+
+<p style="color:var(--muted);font-size:13px;margin-bottom:20px;">
+Login karke NSD Knowledge Hub ke content ko manage karein.
+</p>
+
+
+<label>
+Email
+</label>
+
+<input
+type="email"
+id="user-email"
+placeholder="Apna email daliye"
+>
+
+
+<label>
+Password
+</label>
+
+<input
+type="password"
+id="user-password"
+placeholder="Password daliye"
+>
+
+
+<button onclick="handleLogin()">
+Log In
+</button>
+
+
+<p id="status-msg"></p>
+
+</div>
+
+
+<!-- ================= ARTICLE UPLOAD ================= -->
+
+<div
+class="card"
+id="article-section">
+
+<h2>
+Create Article
+</h2>
+
+
+<label>
+Title
+</label>
+
+<input
+type="text"
+id="article-title"
+placeholder="Article ka title"
+>
+
+
+<label>
+Content
+</label>
+
+<textarea
+id="article-content"
+rows="10"
+placeholder="Apna article yahan likhein..."
+></textarea>
+
+
+<button onclick="uploadArticle()">
+Publish Article
+</button>
+
+
+<button
+onclick="handleLogout()"
+style="background:#555;">
+
+Logout
+
+</button>
+
+
+<p id="post-msg"></p>
+
+</div>
+
+
+<!-- ================= CONTACT ================= -->
+
+<div class="card">
+
+<h3>
+Contact
+</h3>
+
+<p style="color:var(--muted);font-size:14px;">
+For feedback, suggestions, collaboration
+or general enquiries.
+</p>
+
+
+<div class="contact-buttons">
+
+
+<a
+class="contact-btn whatsapp"
+href="https://wa.me/919649585135"
+target="_blank"
+rel="noopener">
+
+💬 WhatsApp
+
+</a>
+
+
+<a
+class="contact-btn email"
+href="mailto:naushad201010000@gmail.com">
+
+✉️ Email
+
+</a>
+
+
+</div>
+
+</div>
+
+
+<!-- ================= DISCLAIMER ================= -->
+
+<div class="card">
+
+<h3>
+Disclaimer
+</h3>
+
+<p>
+NSD Knowledge Hub provides general
+information and independently published
+content.
+</p>
+
+<p style="margin-top:8px;">
+Information published as news or articles
+should be verified from reliable sources.
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- ================= SUPABASE ================= -->
+
 <script>
-  // ⚠️ YAHAN APNA 'PROJECT URL' PASTE KAREIN (Jaise: https://xxxx.supabase.co)
-  const SUPABASE_URL = 'YAHAN_APNA_PROJECT_URL_DALIYE';
 
-  // Aapki Publishable API Key:
-  const SUPABASE_ANON_KEY = 'sb_publishable_uZxNS9gMcM95eZtKiPTH7Q_YW70SZLe';
+/*
+=====================================================
+SUPABASE CONFIGURATION
+=====================================================
+*/
 
-  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // Sign Up Function
-  async function handleSignUp() {
-    const email = document.getElementById('user-email').value;
-    const password = document.getElementById('user-password').value;
-    const msg = document.getElementById('status-msg');
-    msg.innerText = "Processing...";
-    msg.style.color = "var(--ink)";
+const SUPABASE_URL =
+'https://hdjdzyegdfvddpjtxwim.supabase.co';
 
-    const { data, error } = await supabaseClient.auth.signUp({ email, password });
-    
-    if (error) {
-      msg.style.color = "red";
-      msg.innerText = "Error: " + error.message;
-    } else {
-      msg.style.color = "green";
-      msg.innerText = "Sign Up Successful! Email check karein.";
+
+const SUPABASE_ANON_KEY =
+'sb_publishable_uZxNS9gMcM95eZtKiPTH7Q_YW70SZLe';
+
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
+
+
+/*
+=====================================================
+LOGIN
+=====================================================
+*/
+
+
+async function handleLogin(){
+
+    const email =
+        document
+        .getElementById('user-email')
+        .value
+        .trim();
+
+
+    const password =
+        document
+        .getElementById('user-password')
+        .value;
+
+
+    const msg =
+        document
+        .getElementById('status-msg');
+
+
+    if(!email || !password){
+
+        msg.style.color="red";
+
+        msg.innerText =
+        "Email aur password daliye.";
+
+        return;
+
     }
-  }
 
-  // Login Function
-  async function handleLogin() {
-    const email = document.getElementById('user-email').value;
-    const password = document.getElementById('user-password').value;
-    const msg = document.getElementById('status-msg');
-    msg.innerText = "Processing...";
-    msg.style.color = "var(--ink)";
 
-    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    msg.style.color="var(--ink)";
 
-    if (error) {
-      msg.style.color = "red";
-      msg.innerText = "Error: " + error.message;
-    } else {
-      msg.style.color = "green";
-      msg.innerText = "Welcome! Login Successful.";
-      document.getElementById('article-section').style.display = 'block';
-    }
-  }
+    msg.innerText="Logging in...";
 
-  // Article Upload Function
-  async function uploadArticle() {
-    const title = document.getElementById('article-title').value;
-    const content = document.getElementById('article-content').value;
-    const postMsg = document.getElementById('post-msg');
 
-    if(!title || !content) {
-      postMsg.style.color = "red";
-      postMsg.innerText = "Kripya Title aur Content dono bharein!";
-      return;
+    const { data, error } =
+        await supabaseClient
+        .auth
+        .signInWithPassword({
+
+            email:email,
+
+            password:password
+
+        });
+
+
+    if(error){
+
+        msg.style.color="red";
+
+        msg.innerText =
+        "Login failed: " +
+        error.message;
+
+        return;
+
     }
 
-    postMsg.style.color = "var(--ink)";
-    postMsg.innerText = "Uploading...";
 
-    const { data, error } = await supabaseClient.from('articles').insert([{ title, content }]);
+    msg.style.color="green";
 
-    if (error) {
-      postMsg.style.color = "red";
-      postMsg.innerText = "Error: " + error.message;
-    } else {
-      postMsg.style.color = "green";
-      postMsg.innerText = "Article Safaltapurvak Publish Ho Gaya!";
-      document.getElementById('article-title').value = '';
-      document.getElementById('article-content').value = '';
+    msg.innerText =
+    "Login successful.";
+
+
+    document
+    .getElementById('auth-card')
+    .style.display="none";
+
+
+    document
+    .getElementById('article-section')
+    .style.display="block";
+
+}
+
+
+/*
+=====================================================
+LOGOUT
+=====================================================
+*/
+
+
+async function handleLogout(){
+
+    await supabaseClient
+    .auth
+    .signOut();
+
+
+    document
+    .getElementById('article-section')
+    .style.display="none";
+
+
+    document
+    .getElementById('auth-card')
+    .style.display="block";
+
+
+    document
+    .getElementById('status-msg')
+    .innerText="Logged out.";
+
+}
+
+
+/*
+=====================================================
+UPLOAD ARTICLE
+=====================================================
+*/
+
+
+async function uploadArticle(){
+
+    const title =
+        document
+        .getElementById('article-title')
+        .value
+        .trim();
+
+
+    const content =
+        document
+        .getElementById('article-content')
+        .value
+        .trim();
+
+
+    const postMsg =
+        document
+        .getElementById('post-msg');
+
+
+    if(!title || !content){
+
+        postMsg.style.color="red";
+
+        postMsg.innerText =
+        "Title aur content dono bharein.";
+
+        return;
+
     }
-  }
+
+
+    postMsg.style.color="var(--ink)";
+
+    postMsg.innerText =
+    "Publishing...";
+
+
+    /*
+    IMPORTANT:
+
+    Ye code 'articles' table use kar raha hai.
+
+    Pehle Supabase me 'articles' table
+    create karna hoga.
+
+    */
+
+    const { data, error } =
+
+        await supabaseClient
+        .from('articles')
+        .insert([{
+
+            title:title,
+
+            content:content
+
+        }]);
+
+
+    if(error){
+
+        postMsg.style.color="red";
+
+        postMsg.innerText =
+        "Publish failed: " +
+        error.message;
+
+        return;
+
+    }
+
+
+    postMsg.style.color="green";
+
+    postMsg.innerText =
+    "Article successfully published.";
+
+
+    document
+    .getElementById('article-title')
+    .value="";
+
+
+    document
+    .getElementById('article-content')
+    .value="";
+
+}
+
+
+/*
+=====================================================
+CHECK EXISTING LOGIN SESSION
+=====================================================
+*/
+
+
+async function checkSession(){
+
+    const { data } =
+        await supabaseClient
+        .auth
+        .getSession();
+
+
+    if(data.session){
+
+        document
+        .getElementById('auth-card')
+        .style.display="none";
+
+
+        document
+        .getElementById('article-section')
+        .style.display="block";
+
+    }
+
+}
+
+
+checkSession();
+
 </script>
+
 
 </body>
 </html>
-
