@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +11,9 @@
 content="NSD Knowledge Hub — News, Articles, Thoughts, Photos and Kota Perspective by Naushad Siddiqui.">
 
 <meta name="author" content="Naushad Siddiqui">
+
+<!-- Supabase Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
@@ -52,7 +54,8 @@ a{
 }
 
 button,
-input{
+input,
+textarea{
     font:inherit;
 }
 
@@ -62,9 +65,7 @@ input{
     position:sticky;
     top:0;
     z-index:1000;
-
     background:rgba(248,247,243,.97);
-
     border-bottom:1px solid var(--line);
 }
 
@@ -73,7 +74,6 @@ input{
     height:74px;
     margin:auto;
     padding:0 22px;
-
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -89,16 +89,12 @@ input{
 .logo{
     width:43px;
     height:43px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     background:var(--ink);
     color:white;
-
     border-radius:5px;
-
     font-size:12px;
     font-weight:900;
     letter-spacing:1px;
@@ -106,1752 +102,225 @@ input{
 
 .brand-title{
     font-family:var(--serif);
-    font-size:21px;
+    font-size:20px;
     font-weight:bold;
 }
 
-.brand-subtitle{
-    color:var(--muted);
-    font-size:10px;
-    letter-spacing:1px;
-    text-transform:uppercase;
-}
-
-.nav{
-    display:flex;
-    align-items:center;
-    gap:22px;
-}
-
-.nav a{
-    color:#3d3d3d;
-    font-size:13px;
-    font-weight:700;
-}
-
-.nav a:hover{
-    color:var(--accent);
-}
-
-.header-actions{
-    display:flex;
-    align-items:center;
-    gap:9px;
-}
-
-.search{
-    width:145px;
-    padding:9px 11px;
-
-    background:white;
-
-    border:1px solid var(--line);
-    border-radius:5px;
-
-    outline:none;
-    font-size:12px;
-}
-
-.search:focus{
-    border-color:var(--accent);
-}
-
-.menu-wrap{
-    position:relative;
-}
-
-.menu-btn{
-    width:40px;
-    height:40px;
-
-    border:1px solid var(--line);
-    border-radius:5px;
-
-    background:white;
-    color:var(--ink);
-
-    cursor:pointer;
-    font-size:22px;
-}
-
-.menu-btn:hover{
-    border-color:var(--accent);
-    color:var(--accent);
-}
-
-.menu{
-    display:none;
-
-    position:absolute;
-    right:0;
-    top:48px;
-
-    width:225px;
-
-    background:white;
-
-    border:1px solid var(--line);
-    border-radius:6px;
-
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
-
-    overflow:hidden;
-}
-
-.menu.show{
-    display:block;
-}
-
-.menu a{
-    display:block;
-    padding:12px 15px;
-
-    border-bottom:1px solid #eeeeea;
-
-    font-size:13px;
-}
-
-.menu a:hover{
-    background:var(--soft);
-    color:var(--accent);
-}
-
-/* ================= HERO ================= */
-
-.hero{
-    max-width:1180px;
-    margin:auto;
-    padding:70px 22px 55px;
-
-    border-bottom:1px solid var(--line);
-}
-
-.kicker{
-    color:var(--accent);
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-}
-
-.hero h1{
-    max-width:850px;
-
-    margin-top:13px;
-
-    font-family:var(--serif);
-    font-size:58px;
-    line-height:1.06;
-    letter-spacing:-1.5px;
-}
-
-.hero h1 span{
-    color:var(--accent);
-}
-
-.hero-text{
-    max-width:720px;
-
-    margin-top:20px;
-
-    color:#555;
-    font-size:17px;
-}
-
-.hero-line{
-    width:70px;
-    height:3px;
-
-    margin-top:25px;
-
-    background:var(--accent);
-}
-
-/* ================= MAIN ================= */
+/* ================= CONTENT LAYOUT ================= */
 
 .container{
-    max-width:1180px;
-    margin:auto;
-    padding:48px 22px;
+    max-width:750px;
+    margin:40px auto;
+    padding:0 20px;
 }
 
-.section{
-    margin-bottom:70px;
-}
-
-.section-head{
-    display:flex;
-    align-items:end;
-    justify-content:space-between;
-
-    gap:20px;
-
-    padding-bottom:14px;
+.card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:28px;
     margin-bottom:24px;
-
-    border-bottom:2px solid var(--ink);
+    box-shadow:0 2px 8px rgba(0,0,0,0.02);
 }
 
-.section-head h2{
+.card h2, .card h3{
     font-family:var(--serif);
-    font-size:30px;
-}
-
-.section-head p{
-    color:var(--muted);
-    font-size:12px;
-}
-
-/* ================= CATEGORY ================= */
-
-.categories{
-    display:flex;
-    flex-wrap:wrap;
-    gap:7px;
-
-    margin-bottom:25px;
-}
-
-.category{
-    border:1px solid var(--line);
-    background:white;
-
-    padding:7px 12px;
-
-    border-radius:20px;
-
-    color:#555;
-    font-size:12px;
-
-    cursor:pointer;
-}
-
-.category:hover,
-.category.active{
-    background:var(--accent);
-    border-color:var(--accent);
-    color:white;
-}
-
-/* ================= FEATURED ================= */
-
-.featured{
-    display:grid;
-    grid-template-columns:1.35fr .65fr;
-    gap:25px;
-}
-
-.featured-main{
-    min-height:340px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:end;
-
-    padding:35px;
-
-    background:var(--ink);
-    color:white;
-
-    border-radius:4px;
-}
-
-.featured-main .post-type{
-    color:#a9c9dd;
-}
-
-.featured-main h3{
-    max-width:700px;
-
-    margin-top:9px;
-
-    font-family:var(--serif);
-    font-size:36px;
-    line-height:1.15;
-}
-
-.featured-main p{
-    max-width:650px;
-
-    margin-top:12px;
-
-    color:#c9c9c9;
-    font-size:14px;
-}
-
-.featured-side{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-
-.mini-card{
-    flex:1;
-
-    padding:22px;
-
-    background:white;
-
-    border:1px solid var(--line);
-    border-radius:4px;
-
-    cursor:pointer;
-}
-
-.mini-card:hover{
-    border-color:var(--accent);
-}
-
-.mini-card h3{
-    margin-top:6px;
-
-    font-family:var(--serif);
-    font-size:20px;
-}
-
-.mini-card p{
-    margin-top:7px;
-
-    color:var(--muted);
-    font-size:12px;
-}
-
-/* ================= POSTS ================= */
-
-.posts{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.post{
-    background:white;
-
-    border:1px solid var(--line);
-    border-radius:4px;
-
-    overflow:hidden;
-
-    transition:.2s;
-}
-
-.post:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 25px rgba(0,0,0,.07);
-}
-
-.post-image{
-    width:100%;
-    height:190px;
-
-    object-fit:cover;
-
-    display:block;
-}
-
-.post-top{
-    padding:23px 23px 0;
-}
-
-.post-type{
-    margin-top:2px;
-
     color:var(--accent);
-
-    font-size:10px;
-    font-weight:900;
-    letter-spacing:1.2px;
-    text-transform:uppercase;
+    margin-bottom:15px;
 }
 
-.post h3{
-    margin-top:7px;
-
-    font-family:var(--serif);
-    font-size:21px;
-    line-height:1.25;
+label{
+    display:block;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:5px;
+    color:var(--ink);
 }
 
-.post-excerpt{
-    margin-top:9px;
-
-    color:var(--muted);
-    font-size:13px;
+input, textarea{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--paper);
 }
 
-.post-bottom{
-    padding:18px 23px 22px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    border-top:1px solid #eee;
-    margin-top:20px;
-}
-
-.date{
-    color:#999;
-    font-size:10px;
-}
-
-.post-buttons{
-    display:flex;
-    gap:7px;
-}
-
-.read,
-.share-btn{
-    border:0;
-    border-radius:4px;
-
-    padding:8px 11px;
-
-    font-size:11px;
-    font-weight:800;
-
-    cursor:pointer;
-}
-
-.read{
+button{
     background:var(--accent);
     color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:5px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:background 0.2s;
+    margin-right:8px;
 }
 
-.share-btn{
-    background:#edf0f1;
-    color:#333;
-}
-
-.read:hover{
+button:hover{
     background:var(--accent-dark);
 }
 
-/* ================= KOTA ================= */
-
-.kota{
-    background:white;
-
-    border:1px solid var(--line);
-    border-radius:4px;
-
-    padding:30px;
+button.signup-btn{
+    background:#2a7b4c;
 }
 
-.kota h3{
-    font-family:var(--serif);
-    font-size:27px;
-}
-
-.kota p{
-    max-width:780px;
-
-    margin-top:12px;
-
-    color:#555;
+.info-section{
+    border-top:1px solid var(--line);
+    padding-top:15px;
+    margin-top:15px;
     font-size:14px;
+    color:var(--muted);
 }
 
-/* ================= ABOUT ================= */
-
-.about-card{
-    background:white;
-
-    border:1px solid var(--line);
-
-    padding:30px;
-
-    border-radius:4px;
+#status-msg, #post-msg{
+    font-weight:bold;
+    margin-top:10px;
 }
 
-.about-card h3{
-    font-family:var(--serif);
-    font-size:27px;
-}
-
-.about-card p{
-    max-width:780px;
-
-    margin-top:13px;
-
-    color:#555;
-    font-size:14px;
-}
-
-/* ================= CONTACT ================= */
-
-.contact{
-    padding:38px;
-
-    background:var(--ink);
-    color:white;
-
-    border-radius:4px;
-}
-
-.contact h2{
-    font-family:var(--serif);
-    font-size:31px;
-}
-
-.contact p{
-    margin-top:8px;
-    color:#bbb;
-}
-
-.email-button{
-    display:inline-block;
-
-    margin-top:20px;
-
-    padding:11px 17px;
-
-    border-radius:4px;
-
-    background:white;
-    color:var(--ink);
-
-    font-size:12px;
-    font-weight:800;
-}
-
-/* ================= ARTICLE READER ================= */
-
-.modal{
+#article-section{
     display:none;
-
-    position:fixed;
-    inset:0;
-
-    z-index:3000;
-
-    padding:20px;
-
-    background:rgba(0,0,0,.72);
-
-    overflow:auto;
-}
-
-.modal.show{
-    display:block;
-}
-
-.article{
-    max-width:780px;
-
-    margin:55px auto;
-
-    padding:38px;
-
-    background:var(--paper);
-
-    border-radius:5px;
-}
-
-.close{
-    float:right;
-
-    border:1px solid var(--line);
-
-    background:white;
-
-    padding:5px 10px;
-
-    cursor:pointer;
-
-    border-radius:4px;
-}
-
-.article h1{
-    clear:both;
-
-    padding-top:20px;
-
-    font-family:var(--serif);
-    font-size:39px;
-    line-height:1.15;
-}
-
-.article-meta{
-    margin-top:8px;
-
-    color:#888;
-
-    font-size:11px;
-}
-
-.article-image{
-    width:100%;
-
-    max-height:450px;
-
-    object-fit:cover;
-
-    margin-top:25px;
-
-    border-radius:4px;
-}
-
-.article-body{
-    margin-top:25px;
-
-    white-space:pre-line;
-
-    color:#444;
-
-    font-family:var(--serif);
-    font-size:18px;
-    line-height:1.9;
-}
-
-.article-share{
-    margin-top:25px;
-
-    padding:10px 15px;
-
-    border:0;
-    border-radius:4px;
-
-    background:var(--accent);
-    color:white;
-
-    cursor:pointer;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-    background:#111;
-
-    color:#888;
-
-    text-align:center;
-
-    padding:38px 20px;
-
-    font-size:12px;
-}
-
-footer strong{
-    color:white;
-
-    font-family:var(--serif);
-
-    font-size:17px;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:900px){
-
-    .nav{
-        display:none;
-    }
-
-    .featured{
-        grid-template-columns:1fr;
-    }
-
-    .posts{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .hero h1{
-        font-size:47px;
-    }
-}
-
-@media(max-width:620px){
-
-    .header-inner{
-        height:66px;
-        padding:0 15px;
-    }
-
-    .brand-title{
-        font-size:17px;
-    }
-
-    .brand-subtitle{
-        display:none;
-    }
-
-    .search{
-        display:none;
-    }
-
-    .hero{
-        padding:55px 18px 45px;
-    }
-
-    .hero h1{
-        font-size:38px;
-    }
-
-    .hero-text{
-        font-size:15px;
-    }
-
-    .container{
-        padding:38px 15px;
-    }
-
-    .section-head{
-        display:block;
-    }
-
-    .section-head p{
-        margin-top:5px;
-    }
-
-    .posts{
-        grid-template-columns:1fr;
-    }
-
-    .featured-main{
-        min-height:300px;
-        padding:25px;
-    }
-
-    .featured-main h3{
-        font-size:29px;
-    }
-
-    .article{
-        padding:25px 20px;
-        margin:25px auto;
-    }
-
-    .article h1{
-        font-size:31px;
-    }
-
-    .article-body{
-        font-size:17px;
-    }
-
 }
 
 </style>
 </head>
-
-
 <body>
 
-
-<!-- ================= HEADER ================= -->
-
 <header class="site-header">
-
-<div class="header-inner">
-
-<a href="#home" class="brand">
-
-<div class="logo">
-NSD
-</div>
-
-<div>
-
-<div class="brand-title">
-NSD Knowledge Hub
-</div>
-
-<div class="brand-subtitle">
-News · Articles · Thoughts
-</div>
-
-</div>
-
-</a>
-
-
-<nav class="nav">
-
-<a href="#latest">Latest</a>
-<a href="#news">News</a>
-<a href="#thoughts">Thoughts</a>
-<a href="#kota">Kota Perspective</a>
-
-</nav>
-
-
-<div class="header-actions">
-
-<input
-id="search"
-class="search"
-type="search"
-placeholder="Search..."
-oninput="renderPosts()"
->
-
-
-<div class="menu-wrap">
-
-<button
-class="menu-btn"
-onclick="toggleMenu()">
-
-☰
-
-</button>
-
-
-<div id="menu" class="menu">
-
-<a href="#home">Home</a>
-<a href="#latest">Latest Posts</a>
-<a href="#news">News & Articles</a>
-<a href="#thoughts">Thoughts</a>
-<a href="#kota">Kota Perspective</a>
-<a href="#about">About Naushad</a>
-<a href="#contact">Contact</a>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  <div class="header-inner">
+    <div class="brand">
+      <div class="logo">NSD</div>
+      <div class="brand-title">NSD Knowledge Hub</div>
+    </div>
+  </div>
 </header>
 
+<div class="container">
 
-<!-- ================= HERO ================= -->
+  <!-- 1. LOGIN / SIGN UP -->
+  <div class="card" id="auth-card">
+    <h2>Login / Sign Up</h2>
+    
+    <label>Email</label>
+    <input type="email" id="user-email" placeholder="Apna Email daliye">
+    
+    <label>Password</label>
+    <input type="password" id="user-password" placeholder="Password daliye">
+    
+    <button onclick="handleLogin()">Log In</button>
+    <button onclick="handleSignUp()" class="signup-btn">Sign Up</button>
+    <p id="status-msg"></p>
+  </div>
 
-<section id="home" class="hero">
+  <!-- 2. ARTICLE UPLOAD (Login karne par dikhega) -->
+  <div class="card" id="article-section">
+    <h2>Upload Article</h2>
+    
+    <label>Title</label>
+    <input type="text" id="article-title" placeholder="Article ka Title daliye">
+    
+    <label>Content</label>
+    <textarea id="article-content" rows="6" placeholder="Apna Article yahan likhein..."></textarea>
+    
+    <button onclick="uploadArticle()">Publish Article</button>
+    <p id="post-msg"></p>
+  </div>
 
-<div class="kicker">
-NSD KNOWLEDGE HUB
-</div>
+  <!-- 3. CONTACT & DISCLAIMER -->
+  <div class="card">
+    <div class="info-section" style="border-top:none; padding-top:0;">
+      <h3>Contact Us</h3>
+      <p><strong>Email:</strong> naushad201010000@email.com</p>
+    </div>
 
-<h1>
-News, ideas and
-<span>perspectives.</span>
-</h1>
-
-<p class="hero-text">
-
-A personal publishing platform by
-<strong>Naushad Siddiqui</strong> where
-news, articles, thoughts, photographs and
-Kota perspectives are shared.
-
-</p>
-
-<div class="hero-line"></div>
-
-</section>
-
-
-<main class="container">
-
-
-<!-- ================= LATEST ================= -->
-
-<section id="latest" class="section">
-
-<div class="section-head">
-
-<div>
-<h2>Latest</h2>
-</div>
-
-<p>
-Latest posts from NSD Knowledge Hub
-</p>
-
-</div>
-
-
-<div class="categories">
-
-<button
-class="category active"
-onclick="setCategory('All',this)">
-All
-</button>
-
-<button
-class="category"
-onclick="setCategory('News',this)">
-News
-</button>
-
-<button
-class="category"
-onclick="setCategory('Article',this)">
-Articles
-</button>
-
-<button
-class="category"
-onclick="setCategory('Thought',this)">
-Thoughts
-</button>
-
-<button
-class="category"
-onclick="setCategory('Photo',this)">
-Photos
-</button>
+    <div class="info-section">
+      <h3>Disclaimer</h3>
+      <p>NSD Knowledge Hub provides digital and general guidance.</p>
+      <p>Our student support is for informational purposes only and does not replace qualified teachers or professional counselors.</p>
+      <p>We do not guarantee exam rank or career outcomes.</p>
+    </div>
+  </div>
 
 </div>
-
-
-<div id="posts" class="posts"></div>
-
-</section>
-
-
-<!-- ================= FEATURED ================= -->
-
-<section class="section">
-
-<div class="section-head">
-
-<h2>Featured</h2>
-
-<p>Selected post</p>
-
-</div>
-
-
-<div class="featured">
-
-
-<div class="featured-main">
-
-<div class="post-type">
-Featured Article
-</div>
-
-<h3>
-Your most important story can appear here
-</h3>
-
-<p>
-Use this space for your latest or most important
-article, news story or special post.
-</p>
-
-</div>
-
-
-<div class="featured-side">
-
-<div class="mini-card"
-onclick="openPost(
-'Article',
-'Featured Article',
-'Write your complete featured article here.\\n\\nYou can add as many paragraphs as you need.',
-'')">
-
-<div class="post-type">
-Article
-</div>
-
-<h3>
-Featured Article
-</h3>
-
-<p>
-Open and read the complete article.
-</p>
-
-</div>
-
-
-<div class="mini-card"
-onclick="openPost(
-'Photo',
-'Featured Photo',
-'Write the caption or description of your photograph here.',
-'')">
-
-<div class="post-type">
-Photo
-</div>
-
-<h3>
-Featured Photo
-</h3>
-
-<p>
-A photograph with your caption.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= NEWS ================= -->
-
-<section id="news" class="section">
-
-<div class="section-head">
-
-<h2>News & Articles</h2>
-
-<p>
-Information and detailed stories
-</p>
-
-</div>
-
-
-<div class="kota">
-
-<h3>
-A place for your published work
-</h3>
-
-<p>
-Publish news, explainers, articles and
-well-researched stories here. Important
-information should be checked against
-reliable sources before publication.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================= THOUGHTS ================= -->
-
-<section id="thoughts" class="section">
-
-<div class="section-head">
-
-<h2>Thoughts & Posts</h2>
-
-<p>
-Short ideas and personal observations
-</p>
-
-</div>
-
-
-<div class="kota">
-
-<h3>
-Your thoughts can become posts
-</h3>
-
-<p>
-Use this section for short thoughts,
-opinions, observations, captions or
-longer personal posts. You can also
-attach a photograph to a post.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================= KOTA ================= -->
-
-<section id="kota" class="section">
-
-<div class="section-head">
-
-<h2>Kota Perspective</h2>
-
-<p>
-Experience and observations
-</p>
-
-</div>
-
-
-<div class="kota">
-
-<h3>
-Understanding the Kota experience
-</h3>
-
-<p>
-A dedicated section for your observations
-and writing about students, coaching,
-education, preparation, expectations,
-pressure and life around Kota.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================= ABOUT ================= -->
-
-<section id="about" class="section">
-
-<div class="section-head">
-
-<h2>About Naushad</h2>
-
-<p>
-About the person behind the website
-</p>
-
-</div>
-
-
-<div class="about-card">
-
-<h3>
-Naushad Siddiqui
-</h3>
-
-<p>
-I am Naushad Siddiqui, the creator of
-NSD Knowledge Hub.
-</p>
-
-<p>
-This website is my personal publishing
-space for sharing news, articles,
-thoughts, photographs and perspectives.
-</p>
-
-<p>
-The purpose is simple: to write, document
-ideas and share useful information in a
-clear and readable format.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================= CONTACT ================= -->
-
-<section id="contact" class="section">
-
-<div class="contact">
-
-<h2>
-Contact
-</h2>
-
-<p>
-For feedback, suggestions, corrections,
-collaboration or general enquiries.
-</p>
-
-<!-- Replace this email with your final public email -->
-
-<a
-class="email-button"
-href="mailto:YOUR-EMAIL@example.com">
-
-Email
-
-</a>
-
-</div>
-
-</section>
-
-
-</main>
-
-
-<!-- ================= ARTICLE READER ================= -->
-
-<div id="modal" class="modal">
-
-<div class="article">
-
-<button
-class="close"
-onclick="closePost()">
-
-✕
-
-</button>
-
-
-<div
-id="articleType"
-class="post-type">
-</div>
-
-
-<h1 id="articleTitle">
-</h1>
-
-
-<div
-id="articleDate"
-class="article-meta">
-</div>
-
-
-<img
-id="articleImage"
-class="article-image"
-style="display:none"
-alt="Post image"
->
-
-
-<div
-id="articleBody"
-class="article-body">
-</div>
-
-
-<button
-class="article-share"
-onclick="shareCurrentPost()">
-
-Share Post
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-<strong>
-NSD Knowledge Hub
-</strong>
-
-<br><br>
-
-© 2026 NSD Knowledge Hub · Naushad Siddiqui
-
-</footer>
-
 
 <script>
-
-/* =====================================================
-   POSTS
-   YAHAN AAP APNE REAL POSTS ADD KAROGE
-===================================================== */
-
-const posts = [
-
-{
-    type:"News",
-
-    title:"Your First News Article",
-
-    excerpt:"Write a short summary of your news article here.",
-
-    date:"10 August 2026",
-
-    image:"",
-
-    content:
-`Write your complete news article here.
-
-You can write multiple paragraphs.
-
-Add verified information, details and your own explanation here.`
-},
-
-{
-    type:"Article",
-
-    title:"Your First Article",
-
-    excerpt:"A short introduction to your article.",
-
-    date:"10 August 2026",
-
-    image:"",
-
-    content:
-`Write your complete article here.
-
-Use separate paragraphs to make the article easy to read.
-
-You can make this as long as you want.`
-},
-
-{
-    type:"Thought",
-
-    title:"A Thought Worth Sharing",
-
-    excerpt:"Share a thought, observation or personal post.",
-
-    date:"10 August 2026",
-
-    image:"",
-
-    content:
-`Write your thought here.
-
-It can be a short post or a detailed personal reflection.`
-},
-
-{
-    type:"Photo",
-
-    title:"Your Photo Post",
-
-    excerpt:"Add a photograph with a caption.",
-
-    date:"10 August 2026",
-
-    image:"",
-
-    content:
-`Write the caption or description of your photograph here.`
-},
-
-{
-    type:"Article",
-
-    title:"Kota Perspective",
-
-    excerpt:"An article based on observations and experience.",
-
-    date:"10 August 2026",
-
-    image:"",
-
-    content:
-`Write your Kota Perspective article here.
-
-You can discuss students, coaching, education,
-expectations and experiences.`
-}
-
-];
-
-
-let selectedCategory = "All";
-
-let currentPost = null;
-
-
-/* ================= RENDER POSTS ================= */
-
-function renderPosts(){
-
-    const container =
-        document.getElementById("posts");
-
-    const search =
-        document
-        .getElementById("search")
-        .value
-        .toLowerCase();
-
-
-    container.innerHTML = "";
-
-
-    posts.forEach((post,index)=>{
-
-        const categoryMatch =
-            selectedCategory === "All" ||
-            post.type === selectedCategory;
-
-
-        const searchMatch =
-            post.title
-            .toLowerCase()
-            .includes(search) ||
-
-            post.excerpt
-            .toLowerCase()
-            .includes(search);
-
-
-        if(!categoryMatch || !searchMatch){
-            return;
-        }
-
-
-        const article =
-            document.createElement("article");
-
-        article.className = "post";
-
-
-        let imageHTML = "";
-
-        if(post.image){
-
-            imageHTML = `
-            <img
-            class="post-image"
-            src="${post.image}"
-            alt="${post.title}">
-            `;
-
-        }
-
-
-        article.innerHTML = `
-
-            ${imageHTML}
-
-            <div class="post-top">
-
-                <div class="post-type">
-                    ${post.type}
-                </div>
-
-                <h3>
-                    ${post.title}
-                </h3>
-
-                <p class="post-excerpt">
-                    ${post.excerpt}
-                </p>
-
-            </div>
-
-            <div class="post-bottom">
-
-                <span class="date">
-                    ${post.date}
-                </span>
-
-                <div class="post-buttons">
-
-                    <button
-                    class="read"
-                    onclick="openPostByIndex(${index})">
-                    Read
-                    </button>
-
-                    <button
-                    class="share-btn"
-                    onclick="sharePost(${index})">
-                    Share
-                    </button>
-
-                </div>
-
-            </div>
-
-        `;
-
-
-        container.appendChild(article);
-
-    });
-
-}
-
-
-/* ================= CATEGORY ================= */
-
-function setCategory(category,button){
-
-    selectedCategory = category;
-
-
-    document
-    .querySelectorAll(".category")
-    .forEach(btn=>{
-        btn.classList.remove("active");
-    });
-
-
-    button.classList.add("active");
-
-
-    renderPosts();
-
-}
-
-
-/* ================= OPEN POST ================= */
-
-function openPostByIndex(index){
-
-    const post = posts[index];
-
-    currentPost = post;
-
-
-    document
-    .getElementById("articleType")
-    .textContent = post.type;
-
-
-    document
-    .getElementById("articleTitle")
-    .textContent = post.title;
-
-
-    document
-    .getElementById("articleDate")
-    .textContent = post.date;
-
-
-    document
-    .getElementById("articleBody")
-    .textContent = post.content;
-
-
-    const image =
-        document.getElementById("articleImage");
-
-
-    if(post.image){
-
-        image.src = post.image;
-        image.style.display = "block";
-
-    }else{
-
-        image.style.display = "none";
-
+  // ⚠️ YAHAN APNA 'PROJECT URL' PASTE KAREIN (Jaise: https://xxxx.supabase.co)
+  const SUPABASE_URL = 'YAHAN_APNA_PROJECT_URL_DALIYE';
+
+  // Aapki Publishable API Key:
+  const SUPABASE_ANON_KEY = 'sb_publishable_uZxNS9gMcM95eZtKiPTH7Q_YW70SZLe';
+
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // Sign Up Function
+  async function handleSignUp() {
+    const email = document.getElementById('user-email').value;
+    const password = document.getElementById('user-password').value;
+    const msg = document.getElementById('status-msg');
+    msg.innerText = "Processing...";
+    msg.style.color = "var(--ink)";
+
+    const { data, error } = await supabaseClient.auth.signUp({ email, password });
+    
+    if (error) {
+      msg.style.color = "red";
+      msg.innerText = "Error: " + error.message;
+    } else {
+      msg.style.color = "green";
+      msg.innerText = "Sign Up Successful! Email check karein.";
+    }
+  }
+
+  // Login Function
+  async function handleLogin() {
+    const email = document.getElementById('user-email').value;
+    const password = document.getElementById('user-password').value;
+    const msg = document.getElementById('status-msg');
+    msg.innerText = "Processing...";
+    msg.style.color = "var(--ink)";
+
+    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      msg.style.color = "red";
+      msg.innerText = "Error: " + error.message;
+    } else {
+      msg.style.color = "green";
+      msg.innerText = "Welcome! Login Successful.";
+      document.getElementById('article-section').style.display = 'block';
+    }
+  }
+
+  // Article Upload Function
+  async function uploadArticle() {
+    const title = document.getElementById('article-title').value;
+    const content = document.getElementById('article-content').value;
+    const postMsg = document.getElementById('post-msg');
+
+    if(!title || !content) {
+      postMsg.style.color = "red";
+      postMsg.innerText = "Kripya Title aur Content dono bharein!";
+      return;
     }
 
+    postMsg.style.color = "var(--ink)";
+    postMsg.innerText = "Uploading...";
 
-    document
-    .getElementById("modal")
-    .classList.add("show");
+    const { data, error } = await supabaseClient.from('articles').insert([{ title, content }]);
 
-
-    document.body.style.overflow = "hidden";
-
-}
-
-
-/* ================= OPEN CUSTOM POST ================= */
-
-function openPost(type,title,content,image){
-
-    currentPost = {
-        type:type,
-        title:title,
-        content:content,
-        image:image,
-        date:""
-    };
-
-
-    document
-    .getElementById("articleType")
-    .textContent = type;
-
-
-    document
-    .getElementById("articleTitle")
-    .textContent = title;
-
-
-    document
-    .getElementById("articleDate")
-    .textContent = "";
-
-
-    document
-    .getElementById("articleBody")
-    .textContent = content;
-
-
-    const articleImage =
-        document.getElementById("articleImage");
-
-
-    if(image){
-
-        articleImage.src = image;
-        articleImage.style.display = "block";
-
-    }else{
-
-        articleImage.style.display = "none";
-
+    if (error) {
+      postMsg.style.color = "red";
+      postMsg.innerText = "Error: " + error.message;
+    } else {
+      postMsg.style.color = "green";
+      postMsg.innerText = "Article Safaltapurvak Publish Ho Gaya!";
+      document.getElementById('article-title').value = '';
+      document.getElementById('article-content').value = '';
     }
-
-
-    document
-    .getElementById("modal")
-    .classList.add("show");
-
-
-    document.body.style.overflow = "hidden";
-
-}
-
-
-/* ================= CLOSE POST ================= */
-
-function closePost(){
-
-    document
-    .getElementById("modal")
-    .classList.remove("show");
-
-
-    document.body.style.overflow = "auto";
-
-}
-
-
-/* ================= SHARE ================= */
-
-async function sharePost(index){
-
-    const post = posts[index];
-
-    currentPost = post;
-
-
-    const shareData = {
-
-        title:post.title,
-
-        text:
-        post.excerpt +
-        " — NSD Knowledge Hub",
-
-        url:window.location.href
-
-    };
-
-
-    try{
-
-        if(navigator.share){
-
-            await navigator.share(shareData);
-
-        }else{
-
-            await navigator.clipboard
-            .writeText(window.location.href);
-
-            alert("Post link copied!");
-
-        }
-
-    }catch(error){
-
-        console.log("Sharing cancelled.");
-
-    }
-
-}
-
-
-/* ================= SHARE CURRENT ================= */
-
-function shareCurrentPost(){
-
-    if(!currentPost){
-        return;
-    }
-
-
-    sharePost(
-        posts.indexOf(currentPost)
-    );
-
-}
-
-
-/* ================= MENU ================= */
-
-function toggleMenu(){
-
-    document
-    .getElementById("menu")
-    .classList.toggle("show");
-
-}
-
-
-/* ================= CLOSE MENU ================= */
-
-document
-.addEventListener("click",function(event){
-
-    const menu =
-        document.getElementById("menu");
-
-    const button =
-        document.querySelector(".menu-btn");
-
-
-    if(
-        !menu.contains(event.target) &&
-        !button.contains(event.target)
-    ){
-
-        menu.classList.remove("show");
-
-    }
-
-});
-
-
-/* ================= START ================= */
-
-renderPosts();
-
+  }
 </script>
 
 </body>
 </html>
 
-<!-- ================= CONTACT ================= -->
-
-<section id="contact" class="section">
-
-<div class="contact">
-
-<h2>
-Contact
-</h2>
-
-<p>
-For feedback, suggestions, corrections,
-collaboration or general enquiries.
-</p>
-
-<div class="contact-buttons">
-
-<a
-class="contact-btn whatsapp"
-href="https://wa.me/919649585135"
-target="_blank"
-rel="noopener">
-
-💬 WhatsApp
-
-</a>
-
-<a
-class="contact-btn email"
-href="mailto:naushad201010000@gmail.com">
-
-✉️ Email
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-   
