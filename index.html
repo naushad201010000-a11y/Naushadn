@@ -7,7 +7,7 @@
 <title>NSD Knowledge Hub | Naushad Siddiqui</title>
 
 <meta name="description"
-content="NSD Knowledge Hub — News, Articles, Thoughts, Photos and perspectives by Naushad Siddiqui.">
+content="NSD Knowledge Hub — News, National, International, Articles and Thoughts by Naushad Siddiqui.">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -17,11 +17,13 @@ content="NSD Knowledge Hub — News, Articles, Thoughts, Photos and perspectives
     --paper:#f7f6f2;
     --white:#ffffff;
     --ink:#171717;
-    --muted:#666;
-    --line:#ddd9d0;
+    --muted:#666666;
+    --line:#dedbd3;
     --accent:#234f70;
     --accent-dark:#183a53;
     --soft:#edf2f5;
+    --green:#16854b;
+
     --serif:Georgia,"Times New Roman",serif;
     --sans:Arial,Helvetica,sans-serif;
 }
@@ -40,17 +42,24 @@ body{
     background:var(--paper);
     color:var(--ink);
     font-family:var(--sans);
-    line-height:1.7;
+    line-height:1.65;
 }
 
 a{
-    color:inherit;
     text-decoration:none;
+    color:inherit;
+}
+
+button,
+input,
+textarea,
+select{
+    font:inherit;
 }
 
 /* HEADER */
 
-.site-header{
+header{
     position:sticky;
     top:0;
     z-index:1000;
@@ -58,11 +67,12 @@ a{
     border-bottom:1px solid var(--line);
 }
 
-.header{
+.header-inner{
     max-width:1150px;
     height:72px;
     margin:auto;
     padding:0 20px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -75,60 +85,85 @@ a{
 }
 
 .logo{
-    width:42px;
-    height:42px;
+    width:43px;
+    height:43px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     background:#171717;
-    color:#fff;
+    color:white;
+
     border-radius:5px;
+
     font-size:12px;
     font-weight:bold;
     letter-spacing:1px;
 }
 
-.brand h1{
+.brand-name{
     font-family:var(--serif);
     font-size:20px;
+    font-weight:bold;
 }
 
-/* THREE DOT */
+/* MENU */
 
 .menu-button{
-    border:0;
-    background:transparent;
-    font-size:28px;
+    width:42px;
+    height:42px;
+
+    border:1px solid var(--line);
+    background:white;
+
+    border-radius:5px;
+
+    font-size:22px;
     cursor:pointer;
-    padding:5px 10px;
-    color:var(--ink);
 }
 
-.dropdown{
+.menu-panel{
     display:none;
+
     position:absolute;
     right:20px;
-    top:62px;
-    width:230px;
+    top:65px;
+
+    width:220px;
+
     background:white;
     border:1px solid var(--line);
-    box-shadow:0 10px 30px rgba(0,0,0,.12);
     border-radius:7px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+
     overflow:hidden;
 }
 
-.dropdown.show{
+.menu-panel.show{
     display:block;
 }
 
-.dropdown a{
+.menu-panel a,
+.menu-panel button{
     display:block;
-    padding:13px 18px;
-    border-bottom:1px solid #eee;
-    font-size:14px;
+    width:100%;
+
+    padding:13px 16px;
+
+    border:none;
+    background:white;
+
+    text-align:left;
+
+    color:var(--ink);
+
+    cursor:pointer;
 }
 
-.dropdown a:hover{
+.menu-panel a:hover,
+.menu-panel button:hover{
     background:var(--soft);
     color:var(--accent);
 }
@@ -138,33 +173,42 @@ a{
 .hero{
     max-width:1150px;
     margin:auto;
+
     padding:75px 20px 60px;
+
     border-bottom:1px solid var(--line);
 }
 
 .kicker{
     color:var(--accent);
+
     font-size:11px;
     font-weight:bold;
     letter-spacing:2px;
 }
 
-.hero h2{
+.hero h1{
     max-width:800px;
+
     margin-top:12px;
+
     font-family:var(--serif);
+
     font-size:55px;
     line-height:1.08;
 }
 
-.hero h2 span{
+.hero h1 span{
     color:var(--accent);
 }
 
 .hero p{
     max-width:700px;
+
     margin-top:20px;
+
     color:#555;
+
     font-size:17px;
 }
 
@@ -173,6 +217,7 @@ a{
 .container{
     max-width:1150px;
     margin:auto;
+
     padding:45px 20px;
 }
 
@@ -184,12 +229,14 @@ a{
     display:flex;
     justify-content:space-between;
     align-items:end;
+
     border-bottom:2px solid var(--ink);
+
     padding-bottom:12px;
     margin-bottom:24px;
 }
 
-.section-title h3{
+.section-title h2{
     font-family:var(--serif);
     font-size:30px;
 }
@@ -199,67 +246,95 @@ a{
     font-size:12px;
 }
 
+/* POSTS */
+
 .posts{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+    repeat(3,1fr);
+
     gap:20px;
 }
 
 .post{
-    background:var(--white);
+    background:white;
+
     border:1px solid var(--line);
+
     border-radius:6px;
-    padding:24px;
+
+    overflow:hidden;
+
     transition:.2s;
 }
 
 .post:hover{
     transform:translateY(-3px);
-    box-shadow:0 10px 25px rgba(0,0,0,.07);
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.07);
 }
 
-.post img{
+.post-image{
     width:100%;
-    height:190px;
+    height:210px;
+
     object-fit:cover;
-    border-radius:5px;
-    margin-bottom:16px;
+
+    display:block;
+}
+
+.post-body{
+    padding:23px;
 }
 
 .post-type{
     color:var(--accent);
+
     font-size:10px;
     font-weight:bold;
+
     letter-spacing:1.5px;
     text-transform:uppercase;
 }
 
-.post h4{
+.post h3{
     margin-top:8px;
+
     font-family:var(--serif);
+
     font-size:22px;
     line-height:1.25;
 }
 
 .post p{
     margin-top:10px;
+
     color:var(--muted);
+
     font-size:14px;
 }
 
 .date{
-    margin-top:14px;
-    font-size:11px;
+    margin-top:13px;
+
     color:#999;
+
+    font-size:11px;
 }
+
+/* ABOUT */
 
 .about{
     background:white;
+
     border:1px solid var(--line);
+
     padding:32px;
 }
 
-.about h4{
+.about h3{
     font-family:var(--serif);
     font-size:27px;
 }
@@ -273,12 +348,14 @@ a{
 
 .contact{
     padding:35px;
+
     background:#171717;
     color:white;
+
     border-radius:6px;
 }
 
-.contact h3{
+.contact h2{
     font-family:var(--serif);
     font-size:30px;
 }
@@ -294,35 +371,198 @@ a{
 
 .btn{
     display:inline-block;
+
     padding:11px 17px;
+
     margin-right:8px;
+
     border-radius:4px;
+
     font-size:12px;
     font-weight:bold;
 }
 
 .whatsapp{
-    background:#16854b;
+    background:var(--green);
 }
 
 .email{
-    background:#fff;
+    background:white;
     color:#171717;
+}
+
+/* ADMIN */
+
+.admin-section{
+    display:none;
+
+    max-width:800px;
+
+    margin:35px auto;
+
+    padding:0 20px;
+}
+
+.admin-card{
+    background:white;
+
+    border:1px solid var(--line);
+
+    border-radius:7px;
+
+    padding:28px;
+}
+
+.admin-card h2{
+    font-family:var(--serif);
+    color:var(--accent);
+
+    margin-bottom:18px;
+}
+
+.field{
+    margin-bottom:16px;
+}
+
+.field label{
+    display:block;
+
+    margin-bottom:6px;
+
+    font-weight:bold;
+    font-size:13px;
+}
+
+.field input,
+.field textarea,
+.field select{
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid var(--line);
+
+    border-radius:5px;
+
+    background:var(--paper);
+}
+
+.field textarea{
+    min-height:150px;
+    resize:vertical;
+}
+
+.admin-button{
+    background:var(--accent);
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:5px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.admin-button:hover{
+    background:var(--accent-dark);
+}
+
+.logout{
+    background:#777;
+    margin-left:8px;
+}
+
+.status{
+    margin-top:12px;
+    font-weight:bold;
+}
+
+/* LOGIN */
+
+.login-box{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    z-index:2000;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+.login-box.show{
+    display:flex;
+}
+
+.login-card{
+    width:100%;
+    max-width:430px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:8px;
+}
+
+.login-card h2{
+    font-family:var(--serif);
+    color:var(--accent);
+
+    margin-bottom:20px;
+}
+
+.close-login{
+    float:right;
+
+    border:none;
+    background:none;
+
+    font-size:24px;
+    cursor:pointer;
+}
+
+.login-card input{
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:14px;
+
+    border:1px solid var(--line);
+
+    border-radius:5px;
 }
 
 /* FOOTER */
 
 footer{
     background:#111;
+
     color:#888;
+
     text-align:center;
+
     padding:35px 20px;
+
     font-size:12px;
 }
 
 footer strong{
     color:white;
+
     font-family:var(--serif);
+
     font-size:17px;
 }
 
@@ -334,14 +574,19 @@ footer strong{
         grid-template-columns:1fr 1fr;
     }
 
-    .hero h2{
+    .hero h1{
         font-size:42px;
     }
 }
 
 @media(max-width:550px){
 
-    .brand h1{
+    .header-inner{
+        height:64px;
+        padding:0 15px;
+    }
+
+    .brand-name{
         font-size:17px;
     }
 
@@ -349,7 +594,7 @@ footer strong{
         padding:50px 18px 45px;
     }
 
-    .hero h2{
+    .hero h1{
         font-size:37px;
     }
 
@@ -380,58 +625,183 @@ footer strong{
 
 <body>
 
-<header class="site-header">
 
-<div class="header">
+<!-- HEADER -->
 
-<a href="#" class="brand">
+<header>
+
+<div class="header-inner">
+
+<a href="#home" class="brand">
+
 <div class="logo">NSD</div>
-<h1>NSD Knowledge Hub</h1>
+
+<div class="brand-name">
+NSD Knowledge Hub
+</div>
+
 </a>
 
-<button class="menu-button" onclick="toggleMenu()">⋮</button>
+<button
+class="menu-button"
+onclick="toggleMenu()"
+aria-label="Menu">
 
-<div class="dropdown" id="menu">
+☰
 
-<a href="#news">📰 News</a>
-<a href="#national">National</a>
-<a href="#international">International</a>
-<a href="#articles">✍️ Articles</a>
-<a href="#thoughts">💭 Thoughts of the Day</a>
-<a href="#photos">📷 Photos</a>
-<a href="#kota">🎓 Kota Perspective</a>
-<a href="#about">👤 About Naushad</a>
-<a href="#contact">📩 Contact</a>
+</button>
 
-<hr>
+<div id="menuPanel" class="menu-panel">
 
-<a href="admin.html">🔐 Admin Login</a>
+<a href="#home" onclick="closeMenu()">Home</a>
+
+<a href="#news" onclick="closeMenu()">News</a>
+
+<a href="#national" onclick="closeMenu()">National</a>
+
+<a href="#international" onclick="closeMenu()">International</a>
+
+<a href="#articles" onclick="closeMenu()">Articles</a>
+
+<a href="#thoughts" onclick="closeMenu()">Thought of the Day</a>
+
+<button onclick="openLogin();closeMenu()">
+Admin Login
+</button>
 
 </div>
 
 </div>
+
 </header>
 
 
-<section class="hero">
+<!-- HERO -->
 
-<div class="kicker">NSD KNOWLEDGE HUB</div>
+<section class="hero" id="home">
 
-<h2>
+<div class="kicker">
+NSD KNOWLEDGE HUB
+</div>
+
+<h1>
 News, ideas and
 <span>perspectives</span>
 worth reading.
-</h2>
+</h1>
 
 <p>
-A personal publishing platform by
+An independent publishing platform by
 <strong>Naushad Siddiqui</strong> for news,
-articles, thoughts, photos and perspectives
-on students, society, technology and life.
+articles, thoughts, photographs and
+perspectives on society, students,
+technology and life.
 </p>
 
 </section>
 
+
+<!-- ADMIN -->
+
+<section class="admin-section" id="adminSection">
+
+<div class="admin-card">
+
+<h2>
+Publish New Post
+</h2>
+
+<div class="field">
+
+<label>Category</label>
+
+<select id="postCategory">
+
+<option value="News">News</option>
+
+<option value="National">
+National
+</option>
+
+<option value="International">
+International
+</option>
+
+<option value="Articles">
+Articles
+</option>
+
+<option value="Thought of the Day">
+Thought of the Day
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>Title</label>
+
+<input
+id="postTitle"
+type="text"
+placeholder="Post title">
+
+</div>
+
+
+<div class="field">
+
+<label>Content</label>
+
+<textarea
+id="postContent"
+placeholder="Apni post yahan likhein..."></textarea>
+
+</div>
+
+
+<div class="field">
+
+<label>Photo</label>
+
+<input
+id="postImage"
+type="file"
+accept="image/*">
+
+</div>
+
+
+<button
+class="admin-button"
+onclick="publishPost()">
+
+Publish Post
+
+</button>
+
+<button
+class="admin-button logout"
+onclick="logoutAdmin()">
+
+Logout
+
+</button>
+
+<p
+id="adminStatus"
+class="status">
+</p>
+
+</div>
+
+</section>
+
+
+<!-- MAIN -->
 
 <main class="container">
 
@@ -441,11 +811,18 @@ on students, society, technology and life.
 <section class="section" id="news">
 
 <div class="section-title">
-<h3>News</h3>
+
+<h2>News</h2>
+
 <span>Latest updates</span>
+
 </div>
 
-<div id="news-posts" class="posts"></div>
+<div
+id="newsPosts"
+class="posts">
+
+</div>
 
 </section>
 
@@ -455,11 +832,18 @@ on students, society, technology and life.
 <section class="section" id="national">
 
 <div class="section-title">
-<h3>National</h3>
+
+<h2>National</h2>
+
 <span>India</span>
+
 </div>
 
-<div id="national-posts" class="posts"></div>
+<div
+id="nationalPosts"
+class="posts">
+
+</div>
 
 </section>
 
@@ -469,11 +853,18 @@ on students, society, technology and life.
 <section class="section" id="international">
 
 <div class="section-title">
-<h3>International</h3>
+
+<h2>International</h2>
+
 <span>World</span>
+
 </div>
 
-<div id="international-posts" class="posts"></div>
+<div
+id="internationalPosts"
+class="posts">
+
+</div>
 
 </section>
 
@@ -483,11 +874,18 @@ on students, society, technology and life.
 <section class="section" id="articles">
 
 <div class="section-title">
-<h3>Articles</h3>
+
+<h2>Articles</h2>
+
 <span>Ideas & information</span>
+
 </div>
 
-<div id="article-posts" class="posts"></div>
+<div
+id="articlePosts"
+class="posts">
+
+</div>
 
 </section>
 
@@ -497,54 +895,16 @@ on students, society, technology and life.
 <section class="section" id="thoughts">
 
 <div class="section-title">
-<h3>Thoughts of the Day</h3>
+
+<h2>Thought of the Day</h2>
+
 <span>Short reflections</span>
+
 </div>
 
-<div id="thought-posts" class="posts"></div>
-
-</section>
-
-
-<!-- PHOTOS -->
-
-<section class="section" id="photos">
-
-<div class="section-title">
-<h3>Photos</h3>
-<span>Visual stories</span>
-</div>
-
-<div id="photo-posts" class="posts"></div>
-
-</section>
-
-
-<!-- KOTA -->
-
-<section class="section" id="kota">
-
-<div class="section-title">
-<h3>Kota Perspective</h3>
-<span>Student life & preparation</span>
-</div>
-
-<div class="about">
-
-<h4>A perspective on student life</h4>
-
-<p>
-Kota is more than coaching classes and
-competitive examinations. It is also a
-place where students experience pressure,
-expectations, uncertainty and personal growth.
-</p>
-
-<p>
-NSD Knowledge Hub will share observations
-and articles about student life, preparation
-and the relationship between students and families.
-</p>
+<div
+id="thoughtPosts"
+class="posts">
 
 </div>
 
@@ -553,26 +913,32 @@ and the relationship between students and families.
 
 <!-- ABOUT -->
 
-<section class="section" id="about">
+<section class="section">
 
 <div class="section-title">
-<h3>About Naushad</h3>
-<span>The person behind NSD</span>
+
+<h2>About</h2>
+
+<span>NSD Knowledge Hub</span>
+
 </div>
 
 <div class="about">
 
-<h4>Naushad Siddiqui</h4>
+<h3>
+Naushad Siddiqui
+</h3>
 
 <p>
-NSD Knowledge Hub is my personal publishing
-platform where I share articles, news,
-thoughts and perspectives.
+NSD Knowledge Hub is an independent
+publishing platform where news, articles,
+thoughts and useful perspectives are
+shared with readers.
 </p>
 
 <p>
-The aim is to build a useful independent
-knowledge platform through consistent,
+The aim is to build a useful and
+consistent digital publication through
 original and practical content.
 </p>
 
@@ -583,27 +949,36 @@ original and practical content.
 
 <!-- CONTACT -->
 
-<section class="section" id="contact">
+<section class="section">
 
 <div class="contact">
 
-<h3>Connect with NSD</h3>
+<h2>
+Connect with NSD
+</h2>
 
 <p>
-For collaboration, suggestions or general enquiries.
+For feedback, suggestions,
+collaboration or general enquiries.
 </p>
 
 <div class="buttons">
 
-<a class="btn whatsapp"
+<a
+class="btn whatsapp"
 href="https://wa.me/919649585135"
 target="_blank">
+
 WhatsApp
+
 </a>
 
-<a class="btn email"
+<a
+class="btn email"
 href="mailto:naushad201010000@gmail.com">
+
 Email
+
 </a>
 
 </div>
@@ -615,146 +990,706 @@ Email
 </main>
 
 
+<!-- LOGIN -->
+
+<div
+id="loginBox"
+class="login-box">
+
+<div class="login-card">
+
+<button
+class="close-login"
+onclick="closeLogin()">
+
+×
+</button>
+
+<h2>
+Admin Login
+</h2>
+
+<input
+id="loginEmail"
+type="email"
+placeholder="Admin email">
+
+<input
+id="loginPassword"
+type="password"
+placeholder="Password">
+
+<button
+class="admin-button"
+onclick="loginAdmin()">
+
+Log In
+
+</button>
+
+<p
+id="loginStatus"
+class="status">
+</p>
+
+</div>
+
+</div>
+
+
 <footer>
 
-<strong>NSD Knowledge Hub</strong>
+<strong>
+NSD Knowledge Hub
+</strong>
 
 <br><br>
 
-© 2026 Naushad Siddiqui. All rights reserved.
+© 2026 Naushad Siddiqui.
+All rights reserved.
 
 </footer>
 
 
 <script>
 
-const SUPABASE_URL =
-'https://hdjdzyegdfvddpjtxwim.supabase.co';
+/* ==========================================
+   SUPABASE CONNECTION
+========================================== */
 
-const SUPABASE_ANON_KEY =
-'sb_publishable_uZxNS9gMcM95eZtKiPTH7Q_YW70SZLe';
+const SUPABASE_URL =
+"https://hdjdzyegdfvddpjtxwim.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_uZxNS9gMcM95eZtKiPTH7Q_YW70SZLe";
 
 const supabaseClient =
 supabase.createClient(
-SUPABASE_URL,
-SUPABASE_ANON_KEY
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
+
+/* ==========================================
+   MENU
+========================================== */
 
 function toggleMenu(){
 
-const menu =
-document.getElementById("menu");
-
-menu.classList.toggle("show");
+    document
+    .getElementById("menuPanel")
+    .classList.toggle("show");
 
 }
 
+function closeMenu(){
+
+    document
+    .getElementById("menuPanel")
+    .classList.remove("show");
+
+}
+
+
+/* ==========================================
+   LOGIN WINDOW
+========================================== */
+
+function openLogin(){
+
+    document
+    .getElementById("loginBox")
+    .classList.add("show");
+
+}
+
+function closeLogin(){
+
+    document
+    .getElementById("loginBox")
+    .classList.remove("show");
+
+}
+
+
+/* ==========================================
+   ADMIN LOGIN
+========================================== */
+
+async function loginAdmin(){
+
+    const email =
+    document.getElementById("loginEmail").value.trim();
+
+    const password =
+    document.getElementById("loginPassword").value;
+
+    const status =
+    document.getElementById("loginStatus");
+
+    if(!email || !password){
+
+        status.style.color="red";
+
+        status.innerText=
+        "Email aur password daliye.";
+
+        return;
+
+    }
+
+    status.style.color="#234f70";
+
+    status.innerText="Logging in...";
+
+
+    const {data,error} =
+    await supabaseClient.auth
+    .signInWithPassword({
+
+        email:email,
+        password:password
+
+    });
+
+
+    if(error){
+
+        status.style.color="red";
+
+        status.innerText=
+        "Login failed: "+error.message;
+
+        return;
+
+    }
+
+
+    if(
+        data.user.email.toLowerCase()
+        !==
+        "naushad201010000@gmail.com"
+    ){
+
+        await supabaseClient.auth.signOut();
+
+        status.style.color="red";
+
+        status.innerText=
+        "Sirf admin account login kar sakta hai.";
+
+        return;
+
+    }
+
+
+    closeLogin();
+
+    showAdmin();
+
+}
+
+
+/* ==========================================
+   SHOW ADMIN
+========================================== */
+
+function showAdmin(){
+
+    document
+    .getElementById("adminSection")
+    .style.display="block";
+
+    document
+    .getElementById("adminSection")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+async function logoutAdmin(){
+
+    await supabaseClient.auth.signOut();
+
+    document
+    .getElementById("adminSection")
+    .style.display="none";
+
+}
+
+
+/* ==========================================
+   CHECK EXISTING LOGIN
+========================================== */
+
+async function checkAdmin(){
+
+    const {data} =
+    await supabaseClient.auth.getUser();
+
+    if(
+        data &&
+        data.user &&
+        data.user.email &&
+        data.user.email.toLowerCase()
+        ===
+        "naushad201010000@gmail.com"
+    ){
+
+        showAdmin();
+
+    }
+
+}
+
+
+/* ==========================================
+   UPLOAD PHOTO
+========================================== */
+
+async function uploadPhoto(file){
+
+    if(!file){
+        return null;
+    }
+
+
+    const extension =
+    file.name.split(".").pop();
+
+    const fileName =
+    Date.now()
+    + "-"
+    + Math.random()
+    .toString(36)
+    .substring(2)
+    + "."
+    + extension;
+
+
+    const filePath =
+    fileName;
+
+
+    const {error} =
+    await supabaseClient
+    .storage
+    .from("post-images")
+    .upload(
+        filePath,
+        file
+    );
+
+
+    if(error){
+
+        throw error;
+
+    }
+
+
+    const {data} =
+    supabaseClient
+    .storage
+    .from("post-images")
+    .getPublicUrl(filePath);
+
+
+    return data.publicUrl;
+
+}
+
+
+/* ==========================================
+   PUBLISH POST
+========================================== */
+
+async function publishPost(){
+
+    const category =
+    document
+    .getElementById("postCategory")
+    .value;
+
+    const title =
+    document
+    .getElementById("postTitle")
+    .value.trim();
+
+    const content =
+    document
+    .getElementById("postContent")
+    .value.trim();
+
+    const imageFile =
+    document
+    .getElementById("postImage")
+    .files[0];
+
+    const status =
+    document
+    .getElementById("adminStatus");
+
+
+    if(!title || !content){
+
+        status.style.color="red";
+
+        status.innerText=
+        "Title aur content zaroor bharein.";
+
+        return;
+
+    }
+
+
+    status.style.color="#234f70";
+
+    status.innerText=
+    "Publishing...";
+
+
+    try{
+
+        let imageUrl=null;
+
+
+        if(imageFile){
+
+            imageUrl =
+            await uploadPhoto(imageFile);
+
+        }
+
+
+        const {error} =
+        await supabaseClient
+        .from("posts")
+        .insert([{
+
+            title:title,
+
+            content:content,
+
+            category:category,
+
+            image_url:imageUrl
+
+        }]);
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        status.style.color="green";
+
+        status.innerText=
+        "Post successfully publish ho gayi!";
+
+
+        document
+        .getElementById("postTitle")
+        .value="";
+
+        document
+        .getElementById("postContent")
+        .value="";
+
+        document
+        .getElementById("postImage")
+        .value="";
+
+
+        loadPosts();
+
+    }
+
+    catch(error){
+
+        status.style.color="red";
+
+        status.innerText=
+        "Error: "+error.message;
+
+    }
+
+}
+
+
+/* ==========================================
+   LOAD POSTS
+========================================== */
 
 async function loadPosts(){
 
-const { data, error } =
-await supabaseClient
-.from("articles")
-.select("*")
-.order("created_at", {ascending:false});
+    const {data,error} =
+    await supabaseClient
+    .from("posts")
+    .select("*")
+    .order(
+        "created_at",
+        {
+            ascending:false
+        }
+    );
 
-if(error){
 
-console.log(error);
+    if(error){
 
-return;
+        console.log(error);
+
+        return;
+
+    }
+
+
+    clearPostAreas();
+
+
+    data.forEach(post=>{
+
+        const card =
+        createPostCard(post);
+
+
+        if(post.category==="News"){
+
+            document
+            .getElementById("newsPosts")
+            .appendChild(card);
+
+        }
+
+        else if(
+            post.category==="National"
+        ){
+
+            document
+            .getElementById("nationalPosts")
+            .appendChild(card);
+
+        }
+
+        else if(
+            post.category==="International"
+        ){
+
+            document
+            .getElementById("internationalPosts")
+            .appendChild(card);
+
+        }
+
+        else if(
+            post.category==="Articles"
+        ){
+
+            document
+            .getElementById("articlePosts")
+            .appendChild(card);
+
+        }
+
+        else if(
+            post.category==="Thought of the Day"
+        ){
+
+            document
+            .getElementById("thoughtPosts")
+            .appendChild(card);
+
+        }
+
+    });
+
+
+    addEmptyMessages();
+
+}
+
+
+/* ==========================================
+   CLEAR
+========================================== */
+
+function clearPostAreas(){
+
+    document
+    .getElementById("newsPosts")
+    .innerHTML="";
+
+    document
+    .getElementById("nationalPosts")
+    .innerHTML="";
+
+    document
+    .getElementById("internationalPosts")
+    .innerHTML="";
+
+    document
+    .getElementById("articlePosts")
+    .innerHTML="";
+
+    document
+    .getElementById("thoughtPosts")
+    .innerHTML="";
 
 }
 
 
-const sections = {
+/* ==========================================
+   CREATE CARD
+========================================== */
 
-"News":
-document.getElementById("news-posts"),
+function createPostCard(post){
 
-"National":
-document.getElementById("national-posts"),
+    const article =
+    document.createElement("article");
 
-"International":
-document.getElementById("international-posts"),
-
-"Article":
-document.getElementById("article-posts"),
-
-"Thought":
-document.getElementById("thought-posts"),
-
-"Photo":
-document.getElementById("photo-posts")
-
-};
+    article.className="post";
 
 
-Object.values(sections).forEach(
-section => section.innerHTML=""
-);
+    if(post.image_url){
+
+        const image =
+        document.createElement("img");
+
+        image.className="post-image";
+
+        image.src=post.image_url;
+
+        image.alt=post.title;
+
+        article.appendChild(image);
+
+    }
 
 
-data.forEach(post => {
+    const body =
+    document.createElement("div");
 
-const card =
-document.createElement("article");
-
-card.className="post";
+    body.className="post-body";
 
 
-let imageHTML="";
+    const type =
+    document.createElement("div");
 
-if(post.image_url){
+    type.className="post-type";
 
-imageHTML=
-`<img src="${post.image_url}" alt="${post.title}">`;
+    type.innerText=post.category;
+
+
+    const title =
+    document.createElement("h3");
+
+    title.innerText=post.title;
+
+
+    const content =
+    document.createElement("p");
+
+    content.innerText=post.content;
+
+
+    const date =
+    document.createElement("div");
+
+    date.className="date";
+
+    date.innerText=
+    new Date(
+        post.created_at
+    ).toLocaleDateString(
+        "en-IN",
+        {
+            day:"numeric",
+            month:"short",
+            year:"numeric"
+        }
+    );
+
+
+    body.appendChild(type);
+
+    body.appendChild(title);
+
+    body.appendChild(content);
+
+    body.appendChild(date);
+
+    article.appendChild(body);
+
+
+    return article;
 
 }
 
 
-const date =
-new Date(post.created_at)
-.toLocaleDateString("en-IN");
+/* ==========================================
+   EMPTY MESSAGE
+========================================== */
+
+function addEmptyMessages(){
+
+    const areas=[
+
+        ["newsPosts","News"],
+        ["nationalPosts","National"],
+        ["internationalPosts","International"],
+        ["articlePosts","Articles"],
+        ["thoughtPosts","Thought of the Day"]
+
+    ];
 
 
-card.innerHTML=`
+    areas.forEach(item=>{
 
-${imageHTML}
-
-<div class="post-type">
-${post.category || "Post"}
-</div>
-
-<h4>${post.title}</h4>
-
-<p>${post.content}</p>
-
-<div class="date">
-${date}
-</div>
-
-`;
+        const area =
+        document.getElementById(item[0]);
 
 
-if(sections[post.category]){
+        if(area.children.length===0){
 
-sections[post.category]
-.appendChild(card);
+            const empty =
+            document.createElement("p");
+
+            empty.style.color="#777";
+
+            empty.innerText=
+            "No posts published yet.";
+
+            area.appendChild(empty);
+
+        }
+
+    });
 
 }
 
-});
 
-}
-
+/* ==========================================
+   START
+========================================== */
 
 loadPosts();
+
+checkAdmin();
+
 
 </script>
 
 </body>
 </html>
+
 
 
